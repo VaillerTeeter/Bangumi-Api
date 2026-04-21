@@ -432,6 +432,7 @@ jobs:
             ! -path "./.github/*" ! -path "./.lintrc/*" ! -path "./node_modules/*" 2>/dev/null)
           if [ ${#JS_FMT_FILES[@]} -gt 0 ]; then
             npx prettier --config .lintrc/frontend/prettier/.prettierrc \
+              --ignore-path .lintrc/frontend/prettier/.prettierignore \
               --check "${JS_FMT_FILES[@]}"
           fi
 
@@ -492,8 +493,8 @@ jobs:
         if: steps.check-ts.outputs.found == 'true'
         run: |
           npx prettier --config .lintrc/frontend/prettier/.prettierrc \
-            --check "**/*.ts" "**/*.tsx" \
-            --ignore-path .gitignore
+            --ignore-path .lintrc/frontend/prettier/.prettierignore \
+            --check "**/*.ts" "**/*.tsx"
 
       - name: ESLint (static analysis)
         if: steps.check-ts.outputs.found == 'true'
@@ -554,8 +555,8 @@ jobs:
         if: steps.check-vue.outputs.found == 'true'
         run: |
           npx prettier --config .lintrc/frontend/prettier/.prettierrc \
-            --check "**/*.vue" \
-            --ignore-path .gitignore
+            --ignore-path .lintrc/frontend/prettier/.prettierignore \
+            --check "**/*.vue"
 
       - name: ESLint (static analysis)
         if: steps.check-vue.outputs.found == 'true'
@@ -1349,7 +1350,9 @@ jobs:
           mapfile -t JSON_FILES < <(find . -name "*.json" \
             ! -path "./.github/*" ! -path "./.lintrc/*" ! -path "./node_modules/*" \
             ! -path "./vendor/*" ! -path "./.git/*" 2>/dev/null)
-          prettier --config .lintrc/frontend/prettier/.prettierrc --check "${JSON_FILES[@]}"
+          prettier --config .lintrc/frontend/prettier/.prettierrc \
+            --ignore-path .lintrc/frontend/prettier/.prettierignore \
+            --check "${JSON_FILES[@]}"
 
   xml-lint:
     name: XML Lint
@@ -1615,7 +1618,9 @@ jobs:
           mapfile -t GQL_FILES < <(find . \( -name "*.graphql" -o -name "*.gql" \) \
             ! -path "./.github/*" ! -path "./node_modules/*" \
             ! -path "./vendor/*" 2>/dev/null)
-          prettier --config .lintrc/frontend/prettier/.prettierrc --check "${GQL_FILES[@]}"
+          prettier --config .lintrc/frontend/prettier/.prettierrc \
+            --ignore-path .lintrc/frontend/prettier/.prettierignore \
+            --check "${GQL_FILES[@]}"
 
   openapi-lint:
     name: OpenAPI / Swagger Lint
@@ -3076,7 +3081,8 @@ jobs:
             npx license-checker \
               --onlyAllow \
               "MIT;Apache-2.0;BSD-2-Clause;BSD-3-Clause;ISC;CC0-1.0;CC-BY-4.0;Unlicense;0BSD;Python-2.0;PSF-2.0" \
-              --excludePrivatePackages
+              --excludePrivatePackages \
+              --excludePackages "bangumi-api-client"
           else
             echo "No package.json found, skipping Node.js license check."
           fi

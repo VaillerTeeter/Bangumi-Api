@@ -1,7 +1,7 @@
 export * from './generated/index.js';
-export { client } from './generated/client.gen.js';
 
 import { client } from './generated/client.gen.js';
+export { client };
 
 /**
  * Configure the Bangumi API client with an access token.
@@ -13,7 +13,7 @@ export function configureBangumiClient(accessToken: string, userAgent: string): 
   client.setConfig({
     baseUrl: 'https://api.bgm.tv',
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      'Authorization': `Bearer ${accessToken}`,
       'User-Agent': userAgent,
     },
   });

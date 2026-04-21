@@ -253,7 +253,19 @@
     "Starlark",
     "apachectl",
     "robotidy",
-    "kclvm"
+    "kclvm",
+    "Bangumi",
+    "bangumi",
+    "airdate",
+    "Airdate",
+    "romaji",
+    "prsn",
+    "Mangaka",
+    "mangaka",
+    "Seiyu",
+    "seiyu",
+    "meilisearch",
+    "Colada"
   ],
 
   "flagWords": [
@@ -313,6 +325,7 @@
     ".git/**",
     "dist",
     "build",
+    "src/generated/**",
     "coverage",
     ".next",
     ".nuxt",

@@ -12,6 +12,7 @@
       "node_modules",
       "dist",
       "build",
+      "src/generated/**",
       ".next",
       ".nuxt",
       ".svelte-kit",
@@ -313,6 +314,17 @@
   },
 
   "overrides": [
+    {
+      "include": ["src/index.ts"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noBarrelFile": "off",
+            "noReExportAll": "off"
+          }
+        }
+      }
+    },
     {
       "include": ["*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx"],
       "linter": {
