@@ -1,178 +1,28 @@
-# Example-of-Github-Repo
+# bangumi-api-client
 
-个人代码示例仓库，收录各类语言和框架的代码片段与实践示例。
+基于 [Bangumi 官方 OpenAPI 规范](https://bangumi.github.io/api/) 自动生成的 TypeScript 客户端库，可作为依赖供其他项目调用。
+
+## 特性
+
+- 全量覆盖 Bangumi API（条目、章节、角色、人物、用户、收藏、编辑历史、目录）
+- 完整 TypeScript 类型定义，由 OpenAPI 规范自动生成
+- 基于 `@hey-api/openapi-ts` 构建，规范更新时一键重新生成
 
 ## 目录结构
 
 ```text
 .
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   │   ├── config.yml                # 禁用空白 Issue，配置联系链接
-│   │   ├── bug_report_zh.md          # Bug 报告模板（中文）
-│   │   ├── bug_report_en.md          # Bug Report Template (English)
-│   │   ├── feature_request_zh.md     # 功能请求模板（中文）
-│   │   └── feature_request_en.md     # Feature Request Template (English)
-│   ├── docs/
-│   │   ├── ci/
-│   │   │   └── ci-checks.md                 # CI 检查说明（详细规则文档）
-│   │   └── settings/
-│   │       ├── settings-general.md
-│   │       ├── settings-branches.md
-│   │       ├── settings-rules-rulesets.md
-│   │       ├── settings-actions.md
-│   │       ├── settings-advanced-security.md
-│   │       └── ...（共 19 个 GitHub 仓库配置说明文档）
-│   ├── workflows/
-│   │   └── lint.yml                  # 多语言 lint CI（102 个 job，覆盖所有语言/格式/安全/文档/构建工具）
-│   ├── dependabot.yml                # 自动更新 Actions 依赖（每周一）
-│   ├── PULL_REQUEST_TEMPLATE.md      # PR 模板（中英双语）
-│   └── copilot-instructions.md       # Copilot 工作区指令
-├── .lintrc/                          # 所有 lint 配置文件（按功能分类）
-│   ├── backend/                      # 后端语言
-│   │   ├── c-cpp/
-│   │   │   ├── .clang-format         # C/C++ 代码格式化（clang-format）
-│   │   │   ├── .clang-tidy           # C 静态分析（clang-tidy）
-│   │   │   └── .clang-tidy-cpp       # C++ 静态分析（clang-tidy）
-│   │   ├── clojure/
-│   │   │   └── config.edn            # Clojure 静态分析（clj-kondo）
-│   │   ├── crystal/
-│   │   │   └── .ameba.yml            # Crystal 静态分析（Ameba）
-│   │   ├── csharp/
-│   │   │   ├── .csharp-rules.xml     # C# 编码规范（Roslyn 分析器）
-│   │   │   └── .editorconfig-csharp  # C# 格式化规则（dotnet-format）
-│   │   ├── dart/
-│   │   │   └── analysis_options.yaml # Dart/Flutter 静态分析（dart analyze）
-│   │   ├── elixir/
-│   │   │   └── .credo.exs            # Elixir 代码检查（Credo）
-│   │   ├── erlang/
-│   │   │   └── .elvis.config         # Erlang 代码检查（Elvis）
-│   │   ├── fsharp/
-│   │   │   └── fsharplint.json       # F# 静态分析（FSharpLint）
-│   │   ├── go/
-│   │   │   └── .golangci.yml         # Go lint 规则（golangci-lint）
-│   │   ├── groovy/
-│   │   │   └── codenarc.xml          # Groovy 静态分析（CodeNarc）
-│   │   ├── haskell/
-│   │   │   └── .hlint.yaml           # Haskell 代码检查（HLint）
-│   │   ├── java/
-│   │   │   ├── checkstyle.xml        # Java 编码规范（Checkstyle）
-│   │   │   ├── pmd-ruleset.xml       # Java 静态分析（PMD）
-│   │   │   └── spotbugs-exclude.xml  # SpotBugs 排除过滤器
-│   │   ├── julia/
-│   │   │   └── .JuliaFormatter.toml  # Julia 代码格式化（JuliaFormatter）
-│   │   ├── kotlin/
-│   │   │   ├── detekt.yml            # Kotlin 静态分析（Detekt）
-│   │   │   └── .editorconfig-kotlin  # Kotlin 格式化规则（ktlint）
-│   │   ├── lua/
-│   │   │   ├── .luacheckrc           # Lua 静态分析（luacheck）
-│   │   │   └── stylua.toml           # Lua 代码格式化（StyLua）
-│   │   ├── nix/
-│   │   │   └── .statix.toml          # Nix 静态分析（statix）
-│   │   ├── ocaml/
-│   │   │   └── .ocamlformat          # OCaml 代码格式化（ocamlformat）
-│   │   ├── perl/
-│   │   │   └── .perlcriticrc         # Perl 静态分析（Perl::Critic）
-│   │   ├── php/
-│   │   │   ├── .php-rules.xml        # PHP 编码规范（phpcs）
-│   │   │   ├── phpmd-ruleset.xml     # PHP Mess Detector 规则集
-│   │   │   └── phpstan.neon          # PHP 静态分析（PHPStan）
-│   │   ├── python/
-│   │   │   ├── .flake8               # Python lint（flake8 + 插件）
-│   │   │   ├── mypy.ini              # Python 类型检查（mypy）
-│   │   │   ├── .pylintrc             # Python 静态分析（pylint）
-│   │   │   ├── pyproject.toml        # Python 工具聚合配置（black/isort/bandit/pytest）
-│   │   │   └── ruff.toml             # Python 极速 Linter + Formatter（Ruff）
-│   │   ├── r/
-│   │   │   └── .lintr                # R 代码检查（lintr）
-│   │   ├── ruby/
-│   │   │   └── .rubocop.yml          # Ruby lint 规则（RuboCop）
-│   │   ├── rust/
-│   │   │   ├── .clippy.toml          # Rust 静态分析（Clippy）
-│   │   │   └── rustfmt.toml          # Rust 代码格式化（rustfmt）
-│   │   ├── scala/
-│   │   │   └── .scalafmt.conf        # Scala 代码格式化（Scalafmt）
-│   │   ├── solidity/
-│   │   │   └── .solhint.json         # Solidity 智能合约 lint（solhint）
-│   │   └── swift/
-│   │       └── .swiftlint.yml        # Swift lint 规则（SwiftLint）
-│   ├── data-formats/                 # 数据格式
-│   │   ├── graphql/
-│   │   │   └── .graphqlrc.yml        # GraphQL lint（graphql-schema-linter）
-│   │   ├── openapi/
-│   │   │   └── .spectral.yaml        # OpenAPI/Swagger lint（Spectral）
-│   │   ├── protobuf/
-│   │   │   └── buf.yaml              # Protocol Buffers lint（buf）
-│   │   ├── sql/
-│   │   │   └── .sqlfluff             # SQL lint 配置（SQLFluff）
-│   │   ├── toml/
-│   │   │   └── taplo.toml            # TOML 格式化（taplo）
-│   │   └── .yamllint.yml             # YAML 格式规范（yamllint 极严格）
-│   ├── docs/                         # 文档工具
-│   │   ├── latex/
-│   │   │   └── .chktexrc             # LaTeX 代码检查（chktex）
-│   │   ├── markdown/
-│   │   │   └── .markdownlint.json    # Markdown lint 规则配置
-│   │   └── vale.ini                  # 技术文档写作质量（Vale）
-│   ├── frontend/                     # 前端 / 样式
-│   │   ├── biome.json                # JS/TS 统一 Linter + Formatter（Biome）
-│   │   ├── knip.json                 # 死代码 & 未使用依赖检测（Knip）
-│   │   ├── css-styles/
-│   │   │   ├── .stylelintrc.json     # CSS/SCSS/Less lint（Stylelint，极严格）
-│   │   │   ├── .stylelintrc-scss.json # SCSS lint（stylelint + stylelint-scss）
-│   │   │   └── .stylelintrc-less.json # Less lint（stylelint + postcss-less）
-│   │   ├── frameworks/
-│   │   │   ├── .eslintrc-astro.json  # Astro lint（eslint-plugin-astro）
-│   │   │   ├── .eslintrc-svelte.json # Svelte lint（eslint-plugin-svelte）
-│   │   │   └── .eslintrc-vue.json    # Vue3 lint（eslint-plugin-vue）
-│   │   ├── html/
-│   │   │   └── .htmlhintrc           # HTML lint 规则（HTMLHint）
-│   │   ├── javascript/
-│   │   │   └── .eslintrc-js.json     # JavaScript lint（ESLint + 插件）
-│   │   ├── prettier/
-│   │   │   └── .prettierrc           # JS/TS/Vue/CSS 格式化（Prettier）
-│   │   └── typescript/
-│   │       ├── .eslintrc-ts.json     # TypeScript lint（ESLint + @typescript-eslint）
-│   │       └── tsconfig-lint.json    # TypeScript 类型检查（tsc --noEmit）
-│   ├── general/                      # 通用工具
-│   │   ├── cspell.json               # 拼写检查（CSpell）
-│   │   └── .ls-lint.yml              # 文件命名规范（ls-lint）
-│   ├── git/                          # Git 提交规范
-│   │   └── .commitlintrc.json        # Commit Message 规范（commitlint）
-│   ├── infrastructure/               # 基础设施
-│   │   ├── checkov.yaml              # IaC 安全扫描（Checkov）
-│   │   ├── ansible/
-│   │   │   └── .ansible-lint.yml     # Ansible lint（ansible-lint）
-│   │   ├── build-systems/
-│   │   │   ├── .buildifier.json      # Bazel BUILD lint（buildifier）
-│   │   │   └── .cmake-format.yml     # CMakeLists 格式化（cmake-format）
-│   │   ├── cloudformation/
-│   │   │   └── .cfnlintrc.yml        # AWS CloudFormation lint（cfn-lint）
-│   │   ├── docker/
-│   │   │   └── .hadolint.yaml        # Dockerfile lint（hadolint）
-│   │   ├── kubernetes/
-│   │   │   ├── .kube-linter.yaml     # Kubernetes Manifests lint（kube-linter）
-│   │   │   └── kubeconform.yml       # K8s Schema 验证参数（kubeconform）
-│   │   ├── shell/
-│   │   │   ├── .shellcheckrc         # Bash/Shell lint（ShellCheck）
-│   │   │   └── PSScriptAnalyzerSettings.psd1 # PowerShell 静态分析（PSScriptAnalyzer）
-│   │   └── terraform/
-│   │       └── .tflint.hcl           # Terraform lint（TFLint）
-│   ├── security/                     # 安全扫描
-│   │   ├── .gitleaks.toml            # Secret 泄露检测（Gitleaks）
-│   │   ├── .licensed.yml             # License 合规检查（GitHub Licensed）
-│   │   ├── .semgrep.yml              # 通用 SAST（Semgrep）
-│   │   └── .trivyignore              # Trivy 扫描忽略列表
-│   └── testing/                      # 测试工具
-│       ├── .gherkin-lintrc           # Gherkin/Cucumber 场景 lint（gherkin-lint）
-│       └── .robocop.toml             # Robot Framework 静态分析（Robocop）
-├── .env.example                      # GitHub Token 配置模板
-├── .gitignore
-├── CODE_OF_CONDUCT.md                # 行为准则
-├── CONTRIBUTING.md                   # 贡献指南
-├── LICENSE                           # GNU GPLv3
-├── README.md
-└── SECURITY.md                       # 安全漏洞上报流程
+├── src/
+│   ├── index.ts              # 封装入口（configureBangumiClient 等）
+│   └── generated/            # 自动生成，勿手动修改
+│       ├── client.gen.ts     # 预配置的 fetch 客户端
+│       ├── sdk.gen.ts        # 所有 API 请求函数
+│       ├── types.gen.ts      # 所有 TypeScript 类型定义
+│       └── index.ts          # 统一 re-export
+├── dist/                     # 编译产物，提交到 git 供消费方使用
+├── openapi-ts.config.ts      # 代码生成配置
+├── tsconfig.json
+└── package.json
 ```
 
 ## 本地配置
@@ -203,10 +53,81 @@
    gh auth status
    ```
 
-## CI 检查说明
+---
 
-> 详细的 CI 检查规则文档已独立维护，请参阅 [ci-checks.md](.github/docs/ci/ci-checks.md)。
+## 对于消费方
+
+在你的项目中将此库作为依赖安装：
+
+```bash
+yarn add github:VaillerTeeter/bangumi-api-client
+```
+
+`dist/` 已预编译并提交到仓库，安装后无需任何额外步骤。
+
+### 初始化
+
+```ts
+import { configureBangumiClient } from 'bangumi-api-client';
+
+configureBangumiClient(
+  'your-access-token',  // 申请地址：https://next.bgm.tv/demo/access-token
+  'YourApp/1.0 (https://github.com/yourname/yourapp)', // User-Agent，必填
+);
+```
+
+### 调用 API
+
+```ts
+import { getSubjectById, searchSubjects } from 'bangumi-api-client';
+
+// 获取条目详情
+const subject = await getSubjectById({ path: { subject_id: 400602 } });
+console.log(subject.data?.name);
+
+// 搜索条目
+const results = await searchSubjects({
+  body: { keyword: '新世纪福音战士' },
+});
+console.log(results.data?.data);
+```
+
+---
+
+## 对于维护方
+
+### 环境初始化（首次 clone 后）
+
+```bash
+yarn install
+```
+
+### 更新 API 并发布
+
+当 Bangumi 官方更新 OpenAPI 规范时，运行：
+
+```bash
+yarn build
+```
+
+`build` 会自动依次执行：
+
+1. `yarn generate` — 拉取最新 OpenAPI 规范，刷新 `src/generated/`
+2. `tsc` — 编译出 `dist/`
+
+完成后将 `src/generated/` 和 `dist/` 一并提交即可。
+
+如只想刷新 `src/generated/` 而不编译：
+
+```bash
+yarn generate
+```
+
+---
 
 ## 相关链接
 
-- [GitHub Profile](https://github.com/VaillerTeeter)
+- [Bangumi API 文档](https://bangumi.github.io/api/)
+- [bangumi/api 仓库](https://github.com/bangumi/api)
+- [Access Token 申请](https://next.bgm.tv/demo/access-token)
+- [User-Agent 规范](https://github.com/bangumi/api/blob/master/docs-raw/user%20agent.md)

@@ -1,0 +1,27 @@
+{
+  "name": "bangumi-api-client",
+  "version": "0.1.0",
+  "description": "TypeScript client for the Bangumi API, auto-generated from the official OpenAPI spec",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "yarn generate && tsc",
+    "generate": "openapi-ts",
+    "prepublishOnly": "yarn build"
+  },
+  "keywords": [
+    "bangumi",
+    "api",
+    "client",
+    "typescript"
+  ],
+  "author": "VaillerTeeter",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@hey-api/client-fetch": "^0.13.1",
+    "@hey-api/openapi-ts": "^0.96.1",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,2 +1,11 @@
 # GitHub Token / 密钥文件（禁止提交到仓库）
 .env
+
+# 依赖
+node_modules/
+
+# 构建产物（提交到 git，供 yarn add github:... 直接使用）
+# dist/
+
+# 自动生成的代码（提交到 git，版本化 API 定义）
+# src/generated/
