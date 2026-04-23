@@ -1,4 +1,4 @@
-import type { Client } from '../generated/client/index.js';
+﻿import type { Client } from '../generated/client/index.js';
 import type { Episode, EpisodeDetail, EpType } from '../generated/types.gen.js';
 
 /** `getEpisodes` 的可选参数。 */
@@ -64,6 +64,7 @@ export class EpisodeAPI {
       url: '/v0/episodes',
       query: { subject_id: subjectId, type, limit, offset },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[EpisodeAPI.getEpisodes]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -92,6 +93,7 @@ export class EpisodeAPI {
       path: { episode_id: episodeId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[EpisodeAPI.getEpisodeById]', JSON.stringify(result.data, null, 2));
     return result as never;
   }

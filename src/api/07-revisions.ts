@@ -1,4 +1,4 @@
-import type { Client } from '../generated/client/index.js';
+﻿import type { Client } from '../generated/client/index.js';
 import type {
   PagedRevision,
   PersonRevision,
@@ -66,6 +66,7 @@ export class RevisionAPI {
       query: { person_id: personId, limit, offset },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[RevisionAPI.getPersonRevisions]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -92,6 +93,7 @@ export class RevisionAPI {
       path: { revision_id: revisionId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[RevisionAPI.getPersonRevisionByRevisionId]',
         JSON.stringify(result.data, null, 2),
@@ -124,6 +126,7 @@ export class RevisionAPI {
       query: { character_id: characterId, limit, offset },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[RevisionAPI.getCharacterRevisions]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -150,6 +153,7 @@ export class RevisionAPI {
       path: { revision_id: revisionId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[RevisionAPI.getCharacterRevisionByRevisionId]',
         JSON.stringify(result.data, null, 2),
@@ -182,6 +186,7 @@ export class RevisionAPI {
       query: { subject_id: subjectId, limit, offset },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[RevisionAPI.getSubjectRevisions]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -208,6 +213,7 @@ export class RevisionAPI {
       path: { revision_id: revisionId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[RevisionAPI.getSubjectRevisionByRevisionId]',
         JSON.stringify(result.data, null, 2),
@@ -240,6 +246,7 @@ export class RevisionAPI {
       query: { episode_id: episodeId, limit, offset },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[RevisionAPI.getEpisodeRevisions]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -266,6 +273,7 @@ export class RevisionAPI {
       path: { revision_id: revisionId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[RevisionAPI.getEpisodeRevisionByRevisionId]',
         JSON.stringify(result.data, null, 2),

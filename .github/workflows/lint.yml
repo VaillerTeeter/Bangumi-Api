@@ -231,3 +231,31 @@ jobs:
 
       - name: Run ls-lint
         run: ls-lint --config .lintrc/general/.ls-lint.yml
+
+  # ============================================================
+  # Summary gate — used as the single required status check
+  # ============================================================
+  all-checks:
+    name: All Lint Checks Passed
+    if: always()
+    needs:
+      - markdown-lint
+      - yaml-lint
+      - typescript-lint
+      - secret-scan
+      - commitlint-lint
+      - cspell-lint
+      - knip-lint
+      - ls-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check all jobs passed
+        env:
+          RESULTS: ${{ toJSON(needs.*.result) }}
+        run: |
+          echo "Job results: $RESULTS"
+          if echo "$RESULTS" | grep -qE '"failure"|"cancelled"'; then
+            echo "One or more jobs failed or were cancelled."
+            exit 1
+          fi
+          echo "All jobs passed (or were skipped)."

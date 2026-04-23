@@ -7,9 +7,9 @@
 
   "ignore": [],
 
-  "ignoreDependencies": ["@types/*"],
+  "ignoreDependencies": ["@hey-api/client-fetch"],
 
-  "ignoreBinaries": [],
+  "ignoreBinaries": ["commitlint", "cspell", "eslint", "prettier"],
 
   "includeEntryExports": false,
 

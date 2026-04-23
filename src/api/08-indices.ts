@@ -1,4 +1,4 @@
-import type { Client } from '../generated/client/index.js';
+﻿import type { Client } from '../generated/client/index.js';
 import type {
   Index,
   IndexBasicInfo,
@@ -54,6 +54,7 @@ export class IndexAPI {
       url: '/v0/indices',
       body: {},
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[IndexAPI.newIndex]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -74,6 +75,7 @@ export class IndexAPI {
       url: '/v0/indices/{index_id}',
       path: { index_id: indexId },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[IndexAPI.getIndexById]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -100,6 +102,7 @@ export class IndexAPI {
       body,
       headers: { 'Content-Type': 'application/json' },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[IndexAPI.editIndexById]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -135,6 +138,7 @@ export class IndexAPI {
       query: options,
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[IndexAPI.getIndexSubjects]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -161,6 +165,7 @@ export class IndexAPI {
       headers: { 'Content-Type': 'application/json' },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[IndexAPI.addSubjectToIndex]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -189,6 +194,7 @@ export class IndexAPI {
       headers: { 'Content-Type': 'application/json' },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[IndexAPI.editIndexSubject]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -212,6 +218,7 @@ export class IndexAPI {
       path: { index_id: indexId, subject_id: subjectId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[IndexAPI.deleteIndexSubject]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -235,6 +242,7 @@ export class IndexAPI {
       body: {},
       headers: { 'Content-Type': 'application/json' },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[IndexAPI.collectIndex]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -256,6 +264,7 @@ export class IndexAPI {
       url: '/v0/indices/{index_id}/collect',
       path: { index_id: indexId },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[IndexAPI.uncollectIndex]', JSON.stringify(result.data, null, 2));
     return result as never;
   }

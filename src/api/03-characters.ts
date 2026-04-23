@@ -1,4 +1,4 @@
-import type { Client } from '../generated/client/index.js';
+﻿import type { Client } from '../generated/client/index.js';
 import type { Character, CharacterPerson, V0RelatedSubject } from '../generated/types.gen.js';
 
 /** `searchCharacters` 的可选参数。 */
@@ -80,6 +80,7 @@ export class CharacterAPI {
       query: { limit, offset },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[CharacterAPI.searchCharacters]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -106,6 +107,7 @@ export class CharacterAPI {
       path: { character_id: characterId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[CharacterAPI.getCharacterById]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -137,6 +139,7 @@ export class CharacterAPI {
       query: { type },
     });
     const imageUrl = result.error ? undefined : result.response?.url;
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[CharacterAPI.getCharacterImageById]', imageUrl);
     return {
       imageUrl,
@@ -168,6 +171,7 @@ export class CharacterAPI {
       path: { character_id: characterId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[CharacterAPI.getRelatedSubjectsByCharacterId]',
         JSON.stringify(result.data, null, 2),
@@ -197,6 +201,7 @@ export class CharacterAPI {
       path: { character_id: characterId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[CharacterAPI.getRelatedPersonsByCharacterId]',
         JSON.stringify(result.data, null, 2),
@@ -223,6 +228,7 @@ export class CharacterAPI {
       url: '/v0/characters/{character_id}/collect',
       path: { character_id: characterId },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[CharacterAPI.collectCharacter]', result.response?.status);
     return result as never;
   }
@@ -246,6 +252,7 @@ export class CharacterAPI {
       url: '/v0/characters/{character_id}/collect',
       path: { character_id: characterId },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[CharacterAPI.uncollectCharacter]', result.response?.status);
     return result as never;
   }

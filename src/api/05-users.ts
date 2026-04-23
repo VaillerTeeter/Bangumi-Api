@@ -1,4 +1,4 @@
-import type { Client } from '../generated/client/index.js';
+﻿import type { Client } from '../generated/client/index.js';
 import type { GetMyselfResponse, User } from '../generated/types.gen.js';
 
 /**
@@ -42,6 +42,7 @@ export class UserAPI {
       url: '/v0/users/{username}',
       path: { username },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[UserAPI.getUserByName]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -71,6 +72,7 @@ export class UserAPI {
       query: { type },
     });
     const imageUrl = result.error ? undefined : result.response?.url;
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[UserAPI.getUserAvatarByName]', imageUrl);
     return {
       imageUrl,
@@ -99,6 +101,7 @@ export class UserAPI {
     const result = await this.client.get<GetMyselfResponse>({
       url: '/v0/me',
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[UserAPI.getMyself]', JSON.stringify(result.data, null, 2));
     return result as never;
   }

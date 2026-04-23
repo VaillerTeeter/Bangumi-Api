@@ -1,4 +1,4 @@
-import type { Client } from '../generated/client/index.js';
+﻿import type { Client } from '../generated/client/index.js';
 import type {
   RelatedCharacter,
   RelatedPerson,
@@ -215,6 +215,7 @@ export class SubjectAPI {
         weekday: entry.weekday,
         items: entry.items.map(normalizeSubject),
       }));
+      // eslint-disable-next-line no-console
       if (this.debug) console.log('[SubjectAPI.getCalendar]', JSON.stringify(result.data, null, 2));
     }
     return result as never;
@@ -249,6 +250,7 @@ export class SubjectAPI {
       query: { limit, offset },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[SubjectAPI.searchSubjects]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -283,6 +285,7 @@ export class SubjectAPI {
       url: '/v0/subjects',
       query: { type, cat, series, platform, sort, year, month, limit, offset },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[SubjectAPI.getSubjects]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -305,6 +308,7 @@ export class SubjectAPI {
       path: { subject_id: subjectId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[SubjectAPI.getSubjectById]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -336,6 +340,7 @@ export class SubjectAPI {
       query: { type },
     });
     const imageUrl = result.error ? undefined : result.response?.url;
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[SubjectAPI.getSubjectImageById]', imageUrl);
     return {
       imageUrl,
@@ -368,6 +373,7 @@ export class SubjectAPI {
       path: { subject_id: subjectId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[SubjectAPI.getRelatedPersonsBySubjectId]',
         JSON.stringify(result.data, null, 2),
@@ -399,6 +405,7 @@ export class SubjectAPI {
       path: { subject_id: subjectId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[SubjectAPI.getRelatedCharactersBySubjectId]',
         JSON.stringify(result.data, null, 2),
@@ -429,6 +436,7 @@ export class SubjectAPI {
       path: { subject_id: subjectId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[SubjectAPI.getRelatedSubjectsBySubjectId]',
         JSON.stringify(result.data, null, 2),

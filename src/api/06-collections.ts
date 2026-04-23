@@ -1,4 +1,4 @@
-import type { Client } from '../generated/client/index.js';
+﻿import type { Client } from '../generated/client/index.js';
 import type {
   EpisodeCollectionType,
   EpType,
@@ -96,6 +96,7 @@ export class CollectionAPI {
       query: { subject_type, type, limit, offset },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[CollectionAPI.getUserCollections]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -126,6 +127,7 @@ export class CollectionAPI {
       path: { username, subject_id: subjectId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[CollectionAPI.getUserCollectionBySubjectId]',
         JSON.stringify(result.data, null, 2),
@@ -158,6 +160,7 @@ export class CollectionAPI {
       path: { subject_id: subjectId },
       body: payload,
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[CollectionAPI.postUserCollection]', result.response.status);
     return result as never;
   }
@@ -187,6 +190,7 @@ export class CollectionAPI {
       path: { subject_id: subjectId },
       body: payload,
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[CollectionAPI.patchUserCollection]', result.response.status);
     return result as never;
   }
@@ -219,6 +223,7 @@ export class CollectionAPI {
       query: { offset, limit, episode_type },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[CollectionAPI.getUserSubjectEpisodeCollection]',
         JSON.stringify(result.data, null, 2),
@@ -248,6 +253,7 @@ export class CollectionAPI {
       body: payload,
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[CollectionAPI.patchUserSubjectEpisodeCollection]', result.response.status);
     return result as never;
   }
@@ -276,6 +282,7 @@ export class CollectionAPI {
       path: { episode_id: episodeId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[CollectionAPI.getUserEpisodeCollection]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -301,6 +308,7 @@ export class CollectionAPI {
       path: { episode_id: episodeId },
       body: { type },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[CollectionAPI.putUserEpisodeCollection]', result.response.status);
     return result as never;
   }
@@ -327,6 +335,7 @@ export class CollectionAPI {
       path: { username },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[CollectionAPI.getUserCharacterCollections]',
         JSON.stringify(result.data, null, 2),
@@ -358,6 +367,7 @@ export class CollectionAPI {
       path: { username, character_id: characterId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[CollectionAPI.getUserCharacterCollection]',
         JSON.stringify(result.data, null, 2),
@@ -387,6 +397,7 @@ export class CollectionAPI {
       path: { username },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[CollectionAPI.getUserPersonCollections]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -415,6 +426,7 @@ export class CollectionAPI {
       path: { username, person_id: personId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[CollectionAPI.getUserPersonCollection]', JSON.stringify(result.data, null, 2));
     return result as never;
   }

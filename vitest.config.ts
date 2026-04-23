@@ -1,12 +1,15 @@
 import { defineConfig } from 'vitest/config';
-import { loadEnv } from 'vite';
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   test: {
     globals: true,
     testTimeout: 15000,
-    env: loadEnv(mode, process.cwd(), ''),
+    env: Object.fromEntries(
+      Object.entries(process.env)
+        .filter(([k]) => k.startsWith('BGM_'))
+        .map(([k, v]) => [k, v ?? '']),
+    ),
     reporter: 'verbose',
     fileParallelism: false,
   },
-}));
+});

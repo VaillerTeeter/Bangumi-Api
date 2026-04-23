@@ -1,4 +1,4 @@
-import type { Client } from '../generated/client/index.js';
+﻿import type { Client } from '../generated/client/index.js';
 import type {
   Person,
   PersonCharacter,
@@ -75,6 +75,7 @@ export class PersonAPI {
       body: { keyword, filter },
       query: { limit, offset },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[PersonAPI.searchPersons]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -100,6 +101,7 @@ export class PersonAPI {
       url: '/v0/persons/{person_id}',
       path: { person_id: personId },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[PersonAPI.getPersonById]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -128,6 +130,7 @@ export class PersonAPI {
       query: { type },
     });
     const imageUrl = result.error ? undefined : result.response?.url;
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[PersonAPI.getPersonImageById]', imageUrl);
     return {
       imageUrl,
@@ -159,6 +162,7 @@ export class PersonAPI {
       path: { person_id: personId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log('[PersonAPI.getRelatedSubjectsByPersonId]', JSON.stringify(result.data, null, 2));
     return result as never;
   }
@@ -185,6 +189,7 @@ export class PersonAPI {
       path: { person_id: personId },
     });
     if (this.debug)
+      // eslint-disable-next-line no-console
       console.log(
         '[PersonAPI.getRelatedCharactersByPersonId]',
         JSON.stringify(result.data, null, 2),
@@ -211,6 +216,7 @@ export class PersonAPI {
       url: '/v0/persons/{person_id}/collect',
       path: { person_id: personId },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[PersonAPI.collectPerson]', result.response?.status);
     return result as never;
   }
@@ -234,6 +240,7 @@ export class PersonAPI {
       url: '/v0/persons/{person_id}/collect',
       path: { person_id: personId },
     });
+    // eslint-disable-next-line no-console
     if (this.debug) console.log('[PersonAPI.uncollectPerson]', result.response?.status);
     return result as never;
   }
