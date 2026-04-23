@@ -1,4 +1,4 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
 import type { EpisodeCollectionType, EpType, Page, PagedUserCharacterCollection, PagedUserPersonCollection, PagedUserCollection, SubjectType, SubjectCollectionType, UserCharacterCollection, UserEpisodeCollection, UserPersonCollection, UserSubjectCollection, UserSubjectCollectionModifyPayload } from '../generated/types.gen.js';
 
 /** `getUserCollections` 的可选参数。 */

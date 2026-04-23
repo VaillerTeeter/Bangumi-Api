@@ -103,6 +103,9 @@ jobs:
             --config .lintrc/frontend/typescript/.eslintrc-ts.json \
             "src/index.ts" "src/client.ts" "src/api/**/*.ts"
 
+      - name: Generate API types
+        run: yarn generate
+
       - name: TypeScript — type check
         run: yarn typecheck
 

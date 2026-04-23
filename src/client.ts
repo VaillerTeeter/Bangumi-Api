@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { createClient } from './generated/client/index.js';
 import { SubjectAPI } from './api/01-subjects.js';
 import { EpisodeAPI } from './api/02-episodes.js';
@@ -9,6 +10,12 @@ import { RevisionAPI } from './api/07-revisions.js';
 import { IndexAPI } from './api/08-indices.js';
 
 const DEFAULT_BASE_URL = 'https://api.bgm.tv';
+
+const { version: PKG_VERSION } = JSON.parse(
+  readFileSync(new URL('../package.json', import.meta.url), 'utf8')
+) as { version: string };
+
+const DEFAULT_USER_AGENT = `bangumi-api-client/${PKG_VERSION} (https://github.com/VaillerTeeter/bangumi-api-client)`;
 
 export interface BangumiClientOptions {
   /** Bearer access token，用于需要认证的接口和写操作 */
@@ -54,7 +61,7 @@ export function createBangumiClient(options: BangumiClientOptions = {}): Bangumi
   const {
     token,
     baseUrl = DEFAULT_BASE_URL,
-    userAgent = 'bangumi-api-client/1.0.0 (https://github.com/VaillerTeeter/bangumi-api-client)',
+    userAgent = DEFAULT_USER_AGENT,
   } = options;
 
   const headers: Record<string, string> = { 'User-Agent': userAgent };

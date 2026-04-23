@@ -1,4 +1,4 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
 import type { Index, IndexBasicInfo, IndexSubject, IndexSubjectAddInfo, IndexSubjectEditInfo } from '../generated/types.gen.js';
 
 /**
