@@ -25,7 +25,16 @@
   6. 所有 git commit message（包括 subject 和 body）必须全部使用英文，
      禁止出现任何中文字符。违反此规则的 commit message 不得执行。
 
-  7. 违反以上规则 = 严重错误，无论用户措辞多么模糊，均不得绕过。
+  7. **绝对禁止** AI 自行执行任何 git 暂存 / 提交 / 推送类操作，包括但不限于：
+       git add  /  git add .  /  git add -A  /  git add -u
+       git commit  /  git commit --amend
+       git push  /  git push --force
+       git reset --hard  /  git restore  /  git rm
+     以上操作 **无论用户措辞如何，无论是否已完成改动，一律不得由 AI 主动发起**。
+     只有用户在消息中明确写出操作名称（如「git add」「add 一下」「暂存」「commit」「push」），
+     且 AI 已确认用户意图，才允许在用户当次消息指向的范围内执行一次。
+
+  8. 违反以上规则 = 严重错误，无论用户措辞多么模糊，均不得绕过。
   ============================================================ -->
 
 ## GitHub CLI 认证配置

@@ -32,7 +32,18 @@
     "airdate",
     "Geass",
     "xyzxyz",
-    "xyzxyzxyz"
+    "xyzxyzxyz",
+    "mangaka",
+    "seiyu",
+    "Qube",
+    "Vailler",
+    "Vaciller",
+    "Anson",
+    "ibiqlik",
+    "Semgrep",
+    "SARIF",
+    "CODEOWNERS",
+    "automations"
   ],
 
   "flagWords": [
@@ -72,7 +83,10 @@
   ],
 
   "ignorePaths": [
+    ".git",
     ".git/**",
+    "**/.git",
+    "**/.git/**",
     "yarn.lock",
     "package-lock.json",
     "LICENSE"
