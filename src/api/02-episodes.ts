@@ -1,5 +1,5 @@
-import type { Client } from '../generated/client/index.js';
 import type { ClientResult } from '../client.js';
+import type { Client } from '../generated/client/index.js';
 import type { Episode, EpisodeDetail, EpType } from '../generated/types.gen.js';
 
 /** `getEpisodes` 的可选参数。 */

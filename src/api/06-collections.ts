@@ -1,5 +1,5 @@
-import type { Client } from '../generated/client/index.js';
 import type { ClientResult } from '../client.js';
+import type { Client } from '../generated/client/index.js';
 import type {
   EpisodeCollectionType,
   EpType,

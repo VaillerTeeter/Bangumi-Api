@@ -28,12 +28,12 @@ export interface BangumiClientOptions {
  * `T` 为 `data` 字段的具体类型，与底层 `@hey-api/client-fetch` 的调用结果形状一致，
  * 替代原先的 `return result as never` 类型擦除写法。
  */
-export type ClientResult<T> = {
+export interface ClientResult<T> {
   data: T | undefined;
-  error: unknown;
+  error: unknown | undefined;
   response: Response;
   request: Request;
-};
+}
 
 export interface BangumiClient {
   readonly subjects: SubjectAPI;
