@@ -15,6 +15,7 @@ export class UserAPI {
 
   /**
    * @param client - 由 `@hey-api/client-fetch` 创建的 HTTP 客户端实例
+   *
    * @param debug  - 是否开启调试日志（默认 `false`）
    */
   constructor(
@@ -32,7 +33,9 @@ export class UserAPI {
    * 注意：设置了用户名之后无法使用 UID，必须传字符串用户名。
    *
    * @param username - 用户名（唯一，初始与 UID 相同，可修改一次）
+   *
    * @returns 用户信息对象，含 id / username / nickname / user_group / avatar / sign
+   *
    * @throws 400 — username 太长；404 — 对应用户不存在
    */
   async getUserByName(
@@ -55,8 +58,11 @@ export class UserAPI {
    * `GET /v0/users/{username}/avatar`
    *
    * @param username - 用户名
+   *
    * @param type     - 头像尺寸：`'small'` / `'medium'` / `'large'`
+   *
    * @returns `imageUrl` — 跟随重定向后的最终图片 URL；失败时为 `undefined`
+   *
    * @throws 400 — username 太长；404 — 对应用户不存在
    */
   async getUserAvatarByName(
@@ -68,22 +74,22 @@ export class UserAPI {
     response: Response;
     request: Request;
   }> {
-    const result = await this.client.get<undefined>({
+    const result = (await this.client.get<undefined>({
       url: '/v0/users/{username}/avatar',
       path: { username },
       query: { type },
-    });
-    const imageUrl = result.error ? undefined : result.response?.url;
+    })) as unknown as {
+      error: unknown;
+      response: Response;
+      request: Request;
+    };
+    const imageUrl =
+      result.error === null || result.error === undefined ? result.response.url : undefined;
     if (this.debug) {
       // eslint-disable-next-line no-console
       console.log('[UserAPI.getUserAvatarByName]', imageUrl);
     }
-    return {
-      imageUrl,
-      error: result.error,
-      response: (result as never as { response: Response }).response,
-      request: (result as never as { request: Request }).request,
-    };
+    return { imageUrl, error: result.error, response: result.response, request: result.request };
   }
 
   /**
@@ -94,6 +100,7 @@ export class UserAPI {
    * 除标准用户字段外，还可能返回 `email`、`reg_time`、`time_offset` 等额外字段。
    *
    * @returns 当前登录用户的完整信息
+   *
    * @throws 401 — 未提供有效 Token
    */
   async getMyself(): Promise<{

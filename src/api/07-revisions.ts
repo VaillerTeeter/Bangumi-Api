@@ -32,6 +32,7 @@ export class RevisionAPI {
 
   /**
    * @param client - 由 `@hey-api/client-fetch` 创建的 HTTP 客户端实例
+   *
    * @param debug  - 是否开启调试日志（默认 `false`）
    */
   constructor(
@@ -47,8 +48,11 @@ export class RevisionAPI {
    * `GET /v0/revisions/persons`
    *
    * @param personId - 人物 ID（必填）
+   *
    * @param options  - 可选分页参数
+   *
    * @returns `PagedRevision`
+   *
    * @throws 400 — 参数有误
    */
   async getPersonRevisions(
@@ -78,7 +82,9 @@ export class RevisionAPI {
    * `GET /v0/revisions/persons/{revision_id}`
    *
    * @param revisionId - 历史版本 ID
+   *
    * @returns `PersonRevision`
+   *
    * @throws 400 — revision ID 无效；404 — 记录不存在
    */
   async getPersonRevisionByRevisionId(revisionId: number): Promise<{
@@ -107,8 +113,11 @@ export class RevisionAPI {
    * `GET /v0/revisions/characters`
    *
    * @param characterId - 角色 ID（必填）
+   *
    * @param options     - 可选分页参数
+   *
    * @returns `PagedRevision`
+   *
    * @throws 400 — 参数有误
    */
   async getCharacterRevisions(
@@ -138,7 +147,9 @@ export class RevisionAPI {
    * `GET /v0/revisions/characters/{revision_id}`
    *
    * @param revisionId - 历史版本 ID
+   *
    * @returns `CharacterRevision`
+   *
    * @throws 400 — revision ID 无效；404 — 记录不存在
    */
   async getCharacterRevisionByRevisionId(revisionId: number): Promise<{
@@ -167,8 +178,11 @@ export class RevisionAPI {
    * `GET /v0/revisions/subjects`
    *
    * @param subjectId - 条目 ID（必填）
+   *
    * @param options   - 可选分页参数 `limit` / `offset`
+   *
    * @returns `PagedRevision`
+   *
    * @throws 400 — 参数无效
    */
   async getSubjectRevisions(
@@ -198,7 +212,9 @@ export class RevisionAPI {
    * `GET /v0/revisions/subjects/{revision_id}`
    *
    * @param revisionId - 历史版本 ID
+   *
    * @returns `SubjectRevision`
+   *
    * @throws 400 — revision ID 无效；404 — 记录不存在
    */
   async getSubjectRevisionByRevisionId(revisionId: number): Promise<{
@@ -227,8 +243,11 @@ export class RevisionAPI {
    * `GET /v0/revisions/episodes`
    *
    * @param episodeId - 章节 ID（必填）
+   *
    * @param options   - 可选分页参数 `limit` / `offset`
+   *
    * @returns `PagedRevision`
+   *
    * @throws 400 — 参数无效
    */
   async getEpisodeRevisions(
@@ -258,7 +277,9 @@ export class RevisionAPI {
    * `GET /v0/revisions/episodes/{revision_id}`
    *
    * @param revisionId - 历史版本 ID
+   *
    * @returns `DetailedRevision`
+   *
    * @throws 400 — revision ID 无效；404 — 记录不存在
    */
   async getEpisodeRevisionByRevisionId(revisionId: number): Promise<{

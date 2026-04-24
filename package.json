@@ -17,7 +17,7 @@
   "author": "Vaciller <wyc_19533480830@outlook.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": ">=21"
   },
   "scripts": {
     "generate": "openapi-ts",

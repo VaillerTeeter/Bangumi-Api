@@ -29,6 +29,7 @@ export class EpisodeAPI {
 
   /**
    * @param client - 由 `@hey-api/client-fetch` 创建的 HTTP 客户端实例
+   *
    * @param debug  - 是否开启调试日志（默认 `false`）
    */
   constructor(
@@ -47,7 +48,9 @@ export class EpisodeAPI {
    * 条目 ID 无效时返回 HTTP 400，条目不存在时返回 HTTP 404。
    *
    * @param subjectId  - 条目 ID（必填，传 0 返回 400）
+   *
    * @param options    - 可选过滤和分页参数
+   *
    * @returns `data.data` — 章节列表；`data.total` — 总章节数
    */
   async getEpisodes(
@@ -80,6 +83,7 @@ export class EpisodeAPI {
    * 传入 0 或负数返回 HTTP 400，章节不存在返回 HTTP 404。
    *
    * @param episodeId - 章节 ID（正整数）
+   *
    * @returns `data` — `EpisodeDetail` 对象，含 `subject_id` 字段
    */
   async getEpisodeById(episodeId: number): Promise<{

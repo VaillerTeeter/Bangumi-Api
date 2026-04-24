@@ -45,7 +45,9 @@ export interface BangumiClient {
  * 创建 Bangumi API 客户端。
  *
  * @param options - 客户端初始化选项（均为可选）
+ *
  * @returns 初始化后的 {@link BangumiClient} 实例
+ *
  * @example
  * ```ts
  * // 匿名访问（不需要 token 的接口）
@@ -59,11 +61,11 @@ export interface BangumiClient {
  * ```
  */
 export function createBangumiClient(options: BangumiClientOptions = {}): BangumiClient {
-  const { token, baseUrl = DEFAULT_BASE_URL, userAgent = DEFAULT_USER_AGENT } = options;
+  const { baseUrl = DEFAULT_BASE_URL, userAgent = DEFAULT_USER_AGENT } = options;
 
   const headers: Record<string, string> = { 'User-Agent': userAgent };
-  if (token !== undefined) {
-    headers.Authorization = `Bearer ${token}`;
+  if ('token' in options) {
+    headers.Authorization = `Bearer ${options.token}`;
   }
 
   const client = createClient({ baseUrl, headers });
