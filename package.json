@@ -21,8 +21,11 @@
   },
   "scripts": {
     "generate": "openapi-ts",
+    "prebuild": "yarn generate",
     "build": "tsc",
+    "pretypecheck": "yarn generate",
     "typecheck": "tsc --noEmit",
+    "pretest": "yarn generate",
     "test": "vitest run tests/integration",
     "prepare": "yarn generate && yarn build"
   },
