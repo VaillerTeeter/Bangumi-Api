@@ -17,14 +17,8 @@ const PKG_VERSION: string = packageJson.version;
 const DEFAULT_USER_AGENT = `bangumi-api-client/${PKG_VERSION} (https://github.com/VaillerTeeter/bangumi-api-client)`;
 
 export interface BangumiClientOptions {
-  /** Bearer access token，用于需要认证的接口和写操作 */
   token?: string;
-  /** API 基础 URL，默认 https://api.bgm.tv */
   baseUrl?: string;
-  /**
-   * User-Agent 字符串。Bangumi 要求所有客户端设置具描述性的 User-Agent。
-   * @see https://github.com/bangumi/api/blob/master/docs-raw/user%20agent.md
-   */
   userAgent?: string;
 }
 
@@ -37,7 +31,6 @@ export interface BangumiClient {
   readonly collections: CollectionAPI;
   readonly revisions: RevisionAPI;
   readonly indices: IndexAPI;
-  /** 底层 @hey-api/client-fetch 实例，供高级用法使用 */
   readonly _client: ReturnType<typeof createClient>;
 }
 
@@ -45,9 +38,7 @@ export interface BangumiClient {
  * 创建 Bangumi API 客户端。
  *
  * @param options - 客户端初始化选项（均为可选）
- *
  * @returns 初始化后的 {@link BangumiClient} 实例
- *
  * @example
  * ```ts
  * // 匿名访问（不需要 token 的接口）

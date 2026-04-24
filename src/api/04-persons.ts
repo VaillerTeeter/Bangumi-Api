@@ -39,7 +39,6 @@ export class PersonAPI {
 
   /**
    * @param client - 由 `@hey-api/client-fetch` 创建的 HTTP 客户端实例
-   *
    * @param debug  - 是否开启调试日志（默认 `false`）
    */
   constructor(
@@ -57,9 +56,7 @@ export class PersonAPI {
    * 搜索无结果时返回 HTTP 200 + 空数组，不返回 404。
    *
    * @param keyword - 搜索关键词（必填）
-   *
    * @param options - 可选过滤和分页参数
-   *
    * @returns `data.data` — 人物列表；`data.total` — 总匹配数
    */
   async searchPersons(
@@ -91,9 +88,7 @@ export class PersonAPI {
    * `GET /v0/persons/{person_id}`
    *
    * @param personId - 人物 ID
-   *
    * @returns 人物详情对象
-   *
    * @throws 400 — 请求参数有误；404 — 人物不存在
    */
   async getPersonById(personId: number): Promise<{
@@ -119,9 +114,7 @@ export class PersonAPI {
    * `GET /v0/persons/{person_id}/image`
    *
    * @param personId - 人物 ID
-   *
    * @param type     - 图片尺寸：`small` | `grid` | `large` | `medium`
-   *
    * @returns `imageUrl` — 最终图片 URL（跟随重定向后）；请求失败时为 `undefined`
    */
   async getPersonImageById(
@@ -157,9 +150,7 @@ export class PersonAPI {
    * `GET /v0/persons/{person_id}/subjects`
    *
    * @param personId - 人物 ID
-   *
    * @returns `data` — `V0RelatedSubject[]`，含 id / type / staff / eps / name / name_cn / image
-   *
    * @throws 400 — 请求参数有误；404 — 人物不存在
    */
   async getRelatedSubjectsByPersonId(personId: number): Promise<{
@@ -185,9 +176,7 @@ export class PersonAPI {
    * `GET /v0/persons/{person_id}/characters`
    *
    * @param personId - 人物 ID
-   *
    * @returns `data` — `PersonCharacter[]`，含 id / name / type / images / subject_id / subject_type / subject_name / subject_name_cn / staff
-   *
    * @throws 400 — 请求参数有误；404 — 人物不存在
    */
   async getRelatedCharactersByPersonId(personId: number): Promise<{
@@ -219,9 +208,7 @@ export class PersonAPI {
    * 成功时返回 HTTP 204 No Content，`data` 为 `undefined`。
    *
    * @param personId - 人物 ID
-   *
    * @returns 成功时 `error` 为 `undefined`，`response.status` 为 204
-   *
    * @throws 400 — 参数有误；401 — 未登录；404 — 人物不存在
    */
   async collectPerson(
@@ -247,9 +234,7 @@ export class PersonAPI {
    * 成功时返回 HTTP 204 No Content，`data` 为 `undefined`。
    *
    * @param personId - 人物 ID
-   *
    * @returns 成功时 `error` 为 `undefined`，`response.status` 为 204
-   *
    * @throws 400 — 参数有误；401 — 未登录；404 — 人物不存在
    */
   async uncollectPerson(

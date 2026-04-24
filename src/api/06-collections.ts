@@ -59,7 +59,6 @@ export class CollectionAPI {
 
   /**
    * @param client - 由 `@hey-api/client-fetch` 创建的 HTTP 客户端实例
-   *
    * @param debug  - 是否开启调试日志（默认 `false`）
    */
   constructor(
@@ -77,11 +76,8 @@ export class CollectionAPI {
    * 查看私有收藏需要 access token。
    *
    * @param username - 用户名（设置了用户名后无法使用 UID）
-   *
    * @param options  - 可选过滤和分页参数
-   *
    * @returns `data.data` — `UserSubjectCollection[]`；`data.total` — 总数
-   *
    * @throws 400 — 请求参数有误；404 — 用户不存在
    */
   async getUserCollections(
@@ -114,11 +110,8 @@ export class CollectionAPI {
    * 查看私有收藏需要 access token。
    *
    * @param username  - 用户名
-   *
    * @param subjectId - 条目 ID
-   *
    * @returns `UserSubjectCollection`（含 subject 详情）
-   *
    * @throws 400 — 请求参数有误；404 — 用户不存在、条目未收藏或条目为私有收藏
    */
   async getUserCollectionBySubjectId(
@@ -156,11 +149,8 @@ export class CollectionAPI {
    * **需要 access token（认证）。**
    *
    * @param subjectId - 条目 ID
-   *
    * @param payload   - 可选的收藏信息（type / rate / comment / private / tags / ep_status / vol_status）
-   *
    * @returns 成功时 HTTP 204，无响应体
-   *
    * @throws 400 — 参数有误；401 — 未登录；404 — 条目不存在
    */
   async postUserCollection(
@@ -191,11 +181,8 @@ export class CollectionAPI {
    * **需要 access token（认证）。**
    *
    * @param subjectId - 条目 ID
-   *
    * @param payload   - 可选的收藏信息（type / rate / comment / private / tags / ep_status / vol_status）
-   *
    * @returns 成功时 HTTP 204，无响应体
-   *
    * @throws 400 — 参数有误；401 — 未登录；404 — 条目不存在或未收藏
    */
   async patchUserCollection(
@@ -222,11 +209,8 @@ export class CollectionAPI {
    * **需要 access token（认证）。**
    *
    * @param subjectId - 条目 ID
-   *
    * @param options   - 可选分页与章节类型过滤参数
-   *
    * @returns 分页的 `UserEpisodeCollection` 列表，每条含 `episode`、`type`、`updated_at`
-   *
    * @throws 400 — 参数有误；401 — 未登录；404 — 条目不存在
    */
   async getUserSubjectEpisodeCollection(
@@ -262,11 +246,8 @@ export class CollectionAPI {
    * **需要 access token（认证）。**
    *
    * @param subjectId - 条目 ID
-   *
    * @param payload   - 必填：`episode_id`（章节 ID 列表）和 `type`（收藏状态 1/2/3）
-   *
    * @returns 成功时 HTTP 204，无响应体
-   *
    * @throws 400 — 参数有误；401 — 未登录；404 — 条目不存在
    */
   async patchUserSubjectEpisodeCollection(
@@ -293,9 +274,7 @@ export class CollectionAPI {
    * **需要 access token（认证）。**
    *
    * @param episodeId - 章节 ID
-   *
    * @returns `UserEpisodeCollection`（含 `episode`、`type`、`updated_at`）
-   *
    * @throws 400 — episode ID 无效；401 — 未登录；404 — 条目或章节不存在
    */
   async getUserEpisodeCollection(episodeId: number): Promise<{
@@ -323,11 +302,8 @@ export class CollectionAPI {
    * **需要 access token（认证）。**
    *
    * @param episodeId - 章节 ID
-   *
    * @param type      - 收藏状态：1=想看 / 2=看过 / 3=抛弃
-   *
    * @returns 成功时 HTTP 204，无响应体
-   *
    * @throws 400 — episode ID 无效或所属条目未收藏；401 — 未登录；404 — 条目或章节不存在
    */
   async putUserEpisodeCollection(
@@ -352,9 +328,7 @@ export class CollectionAPI {
    * `GET /v0/users/{username}/collections/-/characters`
    *
    * @param username - 用户名（设置了用户名后无法使用 UID）
-   *
    * @returns 分页的 `UserCharacterCollection` 列表
-   *
    * @throws 404 — 用户不存在
    */
   async getUserCharacterCollections(username: string): Promise<{
@@ -383,11 +357,8 @@ export class CollectionAPI {
    * `GET /v0/users/{username}/collections/-/characters/{character_id}`
    *
    * @param username    - 用户名
-   *
    * @param characterId - 角色 ID
-   *
    * @returns `UserCharacterCollection`
-   *
    * @throws 400 — character ID 无效；404 — 用户或角色不存在
    */
   async getUserCharacterCollection(
@@ -419,9 +390,7 @@ export class CollectionAPI {
    * `GET /v0/users/{username}/collections/-/persons`
    *
    * @param username - 用户名
-   *
    * @returns `PagedUserPersonCollection`
-   *
    * @throws 404 — 用户不存在
    */
   async getUserPersonCollections(username: string): Promise<{
@@ -447,11 +416,8 @@ export class CollectionAPI {
    * `GET /v0/users/{username}/collections/-/persons/{person_id}`
    *
    * @param username - 用户名
-   *
    * @param personId - 人物 ID
-   *
    * @returns `UserPersonCollection`
-   *
    * @throws 400 — person ID 无效；404 — 用户或人物不存在
    */
   async getUserPersonCollection(

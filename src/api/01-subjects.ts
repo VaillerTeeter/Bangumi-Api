@@ -111,7 +111,6 @@ export interface GetSubjectsResult {
  * 字段缺失或 `undefined` 时统一转为 `null`。
  *
  * @param raw - 原始 images 对象
- *
  * @returns 规范化后的图片 URL 对象
  */
 function normalizeImages(raw: Record<string, unknown>): NonNullable<CalendarSubject['images']> {
@@ -128,7 +127,6 @@ function normalizeImages(raw: Record<string, unknown>): NonNullable<CalendarSubj
  * 将原始 rating 对象规范化为 `CalendarSubject['rating']` 结构。
  *
  * @param raw - 原始 rating 对象
- *
  * @returns 规范化后的评分对象
  */
 function normalizeRating(raw: Record<string, unknown>): NonNullable<CalendarSubject['rating']> {
@@ -144,7 +142,6 @@ function normalizeRating(raw: Record<string, unknown>): NonNullable<CalendarSubj
  * 字段缺失或 `undefined` 时统一转为 `null`。
  *
  * @param raw - 原始 collection 对象
- *
  * @returns 规范化后的收藏统计对象
  */
 function normalizeCollection(
@@ -166,7 +163,6 @@ function normalizeCollection(
  * 此函数负责进行类型断言并为可选字段提供默认值，确保输出结构的一致性。
  *
  * @param item - 原始条目对象（`Record<string, unknown>`）
- *
  * @returns 规范化后的 `CalendarSubject` 对象
  */
 function normalizeSubject(item: Record<string, unknown>): CalendarSubject {
@@ -214,7 +210,6 @@ export class SubjectAPI {
 
   /**
    * @param client - 由 `@hey-api/client-fetch` 创建的 HTTP 客户端实例
-   *
    * @param debug  - 是否开启调试日志（默认 `false`）
    */
   constructor(
@@ -267,17 +262,11 @@ export class SubjectAPI {
    * 支持按关键词、条目类型、标签、评分、排名等多维度过滤，并可指定排序方式和分页参数。
    *
    * @param options         - 搜索参数
-   *
    * @param options.keyword - 搜索关键词（必填）
-   *
    * @param options.sort    - 排序方式：`match`=相关度 | `heat`=热度 | `rank`=排名 | `score`=评分
-   *
    * @param options.filter  - 过滤条件，支持类型、标签、评分、日期等
-   *
    * @param options.limit   - 每页条数（默认 25，最大 25）
-   *
    * @param options.offset  - 分页偏移（默认 0）
-   *
    * @returns `data.total` — 符合条件的总数；`data.data` — 当页条目列表
    */
   async searchSubjects(options: SearchSubjectsOptions): Promise<{
@@ -308,21 +297,13 @@ export class SubjectAPI {
    * 无结果时返回 HTTP 200 + 空数组，不返回 404。
    *
    * @param options          - 浏览参数
-   *
    * @param options.type     - 条目类型（必填）：1=书籍 2=动画 3=音乐 4=游戏 6=三次元
-   *
    * @param options.cat      - 子分类，不同 type 对应不同可选值
-   *
    * @param options.sort     - 排序方式：`date` | `rank`
-   *
    * @param options.year     - 按年份筛选，如 `2024`
-   *
    * @param options.month    - 按月份筛选（需配合 year），如 `4`
-   *
    * @param options.limit    - 每页条数（默认 25，最大 25）
-   *
    * @param options.offset   - 分页偏移（默认 0）
-   *
    * @returns `data.total` — 符合条件的总数；`data.data` — 当页条目列表
    */
   async getSubjects(options: GetSubjectsOptions): Promise<{
@@ -351,7 +332,6 @@ export class SubjectAPI {
    * 返回完整条目信息，包括基础字段、评分、收藏统计、图片、infobox、标签等。
    *
    * @param subjectId - 条目 ID（正整数，传 0 或负数将返回 HTTP 400）
-   *
    * @returns `data` — 完整 `Subject` 对象；不存在时返回 HTTP 404
    */
   async getSubjectById(
@@ -377,9 +357,7 @@ export class SubjectAPI {
    * 因此 `response.status` 为 200（CDN），真实图片 URL 取自 `response.url`。
    *
    * @param subjectId - 条目 ID
-   *
    * @param type      - 图片尺寸：`small` | `grid` | `large` | `medium` | `common`
-   *
    * @returns `imageUrl` — 最终图片 URL（跟随重定向后）；请求失败时为 `undefined`
    */
   async getSubjectImageById(
@@ -417,7 +395,6 @@ export class SubjectAPI {
    * 返回与该条目相关的真实人物或组织，包含 `relation`（职位/关系）和 `eps`（参与章节）字段。
    *
    * @param subjectId - 条目 ID
-   *
    * @returns `data` — `RelatedPerson[]`，含 id / name / type / career / relation / eps
    */
   async getRelatedPersonsBySubjectId(subjectId: number): Promise<{
@@ -449,7 +426,6 @@ export class SubjectAPI {
    * 注意：部分条目可能没有录入角色数据，此时返回 HTTP 200 + 空数组。
    *
    * @param subjectId - 条目 ID
-   *
    * @returns `data` — `RelatedCharacter[]`，含 id / name / summary / type / images / relation / actors
    */
   async getRelatedCharactersBySubjectId(subjectId: number): Promise<{
@@ -480,7 +456,6 @@ export class SubjectAPI {
    * 关联类型由 `relation` 字段描述，如「续集」「前传」「番外篇」「主题曲」等。
    *
    * @param subjectId - 条目 ID
-   *
    * @returns `data` — `V0SubjectRelation[]`，含 id / type / name / name_cn / images / relation
    */
   async getRelatedSubjectsBySubjectId(subjectId: number): Promise<{

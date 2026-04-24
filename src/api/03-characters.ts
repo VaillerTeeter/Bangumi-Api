@@ -42,7 +42,6 @@ export class CharacterAPI {
 
   /**
    * @param client - 由 `@hey-api/client-fetch` 创建的 HTTP 客户端实例
-   *
    * @param debug  - 是否开启调试日志（默认 `false`）
    */
   constructor(
@@ -61,9 +60,7 @@ export class CharacterAPI {
    * 搜索无结果时返回 HTTP 200 + 空数组，不返回 404。
    *
    * @param keyword - 搜索关键词（必填）
-   *
    * @param options - 可选过滤和分页参数
-   *
    * @returns `data.data` — 角色列表；`data.total` — 总匹配数
    */
   async searchCharacters(
@@ -95,9 +92,7 @@ export class CharacterAPI {
    * `GET /v0/characters/{character_id}`
    *
    * @param characterId - 角色 ID
-   *
    * @returns 角色详情对象
-   *
    * @throws 400 — 请求参数有误；404 — 角色不存在
    */
   async getCharacterById(characterId: number): Promise<{
@@ -126,9 +121,7 @@ export class CharacterAPI {
    * 因此 `response.status` 为 200（CDN），真实图片 URL 取自 `response.url`。
    *
    * @param characterId - 角色 ID
-   *
    * @param type        - 图片尺寸：`small` | `grid` | `large` | `medium`
-   *
    * @returns `imageUrl` — 最终图片 URL（跟随重定向后）；请求失败时为 `undefined`
    */
   async getCharacterImageById(
@@ -161,12 +154,10 @@ export class CharacterAPI {
   /**
    * 获取角色相关联的条目列表。
    *
-   * `GET /v0/characters/{character_id}/subjects`
+   * `GET /v0/characters/{character_id}/subjects`，
    *
    * @param characterId - 角色 ID
-   *
    * @returns `data` — `V0RelatedSubject[]`，含 id / type / staff / name / name_cn / image
-   *
    * @throws 400 — 请求参数有误；404 — 角色不存在
    */
   async getRelatedSubjectsByCharacterId(characterId: number): Promise<{
@@ -195,9 +186,7 @@ export class CharacterAPI {
    * `GET /v0/characters/{character_id}/persons`
    *
    * @param characterId - 角色 ID
-   *
    * @returns `data` — `CharacterPerson[]`，含 id / name / type / subject_id / subject_type / staff
-   *
    * @throws 400 — 请求参数有误；404 — 角色不存在
    */
   async getRelatedPersonsByCharacterId(characterId: number): Promise<{
@@ -229,9 +218,7 @@ export class CharacterAPI {
    * 成功时返回 HTTP 204 No Content，`data` 为 `undefined`。
    *
    * @param characterId - 角色 ID
-   *
    * @returns 成功时 `error` 为 `undefined`，`response.status` 为 204
-   *
    * @throws 400 — 参数有误；401 — 未登录；404 — 角色不存在
    */
   async collectCharacter(
@@ -257,9 +244,7 @@ export class CharacterAPI {
    * 成功时返回 HTTP 204 No Content，`data` 为 `undefined`。
    *
    * @param characterId - 角色 ID
-   *
    * @returns 成功时 `error` 为 `undefined`，`response.status` 为 204
-   *
    * @throws 400 — 参数有误；401 — 未登录；404 — 角色不存在
    */
   async uncollectCharacter(

@@ -27,7 +27,6 @@ export class IndexAPI {
 
   /**
    * @param client - 由 `@hey-api/client-fetch` 创建的 HTTP 客户端实例
-   *
    * @param debug  - 是否开启调试日志（默认 `false`）
    */
   constructor(
@@ -43,7 +42,6 @@ export class IndexAPI {
    * `POST /v0/indices`
    *
    * @returns `Index`
-   *
    * @throws 401 — 未登录
    */
   async newIndex(): Promise<{
@@ -69,9 +67,7 @@ export class IndexAPI {
    * `GET /v0/indices/{index_id}`
    *
    * @param indexId - 目录 ID
-   *
    * @returns `Index`
-   *
    * @throws 404 — 目录不存在
    */
   async getIndexById(
@@ -94,15 +90,10 @@ export class IndexAPI {
    * `PUT /v0/indices/{index_id}`
    *
    * @param indexId - 目录 ID
-   *
    * @param body    - 要修改的字段（title、description）
-   *
    * @returns `Index`
-   *
    * @throws 400 — 请求参数错误
-   *
    * @throws 401 — 未登录
-   *
    * @throws 404 — 目录不存在
    */
   async editIndexById(
@@ -128,19 +119,12 @@ export class IndexAPI {
    * `GET /v0/indices/{index_id}/subjects`
    *
    * @param indexId      - 目录 ID
-   *
    * @param options      - 可选过滤/分页参数
-   *
    * @param options.type   - 条目类型过滤（可选）
-   *
    * @param options.limit  - 每页条数（可选）
-   *
    * @param options.offset - 分页偏移（可选）
-   *
    * @returns 分页列表，包含 `total`、`limit`、`offset`、`data`
-   *
    * @throws 400 — 请求参数错误
-   *
    * @throws 404 — 目录不存在
    */
   async getIndexSubjects(
@@ -175,15 +159,10 @@ export class IndexAPI {
    * `POST /v0/indices/{index_id}/subjects`
    *
    * @param indexId - 目录 ID
-   *
    * @param body    - 条目信息（subject_id、sort、comment）
-   *
    * @returns 成功时 `error` 为 `undefined`
-   *
    * @throws 400 — 请求参数错误
-   *
    * @throws 401 — 未登录
-   *
    * @throws 404 — 目录不存在
    */
   async addSubjectToIndex(
@@ -209,17 +188,11 @@ export class IndexAPI {
    * `PUT /v0/indices/{index_id}/subjects/{subject_id}`
    *
    * @param indexId   - 目录 ID
-   *
    * @param subjectId - 条目 ID
-   *
    * @param body      - 要修改的字段（sort、comment）
-   *
    * @returns 成功时 `error` 为 `undefined`
-   *
    * @throws 400 — 请求参数错误
-   *
    * @throws 401 — 未登录
-   *
    * @throws 404 — 目录或条目不存在
    */
   async editIndexSubject(
@@ -246,13 +219,9 @@ export class IndexAPI {
    * `DELETE /v0/indices/{index_id}/subjects/{subject_id}`
    *
    * @param indexId   - 目录 ID
-   *
    * @param subjectId - 条目 ID
-   *
    * @returns 成功时 `error` 为 `undefined`
-   *
    * @throws 401 — 未登录
-   *
    * @throws 404 — 目录或条目不存在
    */
   async deleteIndexSubject(
@@ -276,13 +245,9 @@ export class IndexAPI {
    * `POST /v0/indices/{index_id}/collect`
    *
    * @param indexId - 目录 ID
-   *
    * @returns 成功时 `error` 为 `undefined`
-   *
    * @throws 401 — 未登录
-   *
    * @throws 404 — 目录不存在
-   *
    * @throws 500 — 服务器内部错误
    */
   async collectIndex(
@@ -307,13 +272,9 @@ export class IndexAPI {
    * `DELETE /v0/indices/{index_id}/collect`
    *
    * @param indexId - 目录 ID
-   *
    * @returns 成功时 `error` 为 `undefined`
-   *
    * @throws 401 — 未登录
-   *
    * @throws 404 — 目录不存在
-   *
    * @throws 500 — 服务器内部错误
    */
   async uncollectIndex(
