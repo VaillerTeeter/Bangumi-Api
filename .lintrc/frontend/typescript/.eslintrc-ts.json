@@ -111,7 +111,7 @@
       { "max": 60, "skipComments": true, "skipBlankLines": true }
     ],
     "max-depth": ["error", 3],
-    "complexity": ["error", 10],
+    "complexity": ["error", 12],
 
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-null": "off",

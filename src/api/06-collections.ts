@@ -157,7 +157,7 @@ export class CollectionAPI {
     subjectId: number,
     payload: UserSubjectCollectionModifyPayload = {},
   ): Promise<{ data: undefined; error: unknown; response: Response; request: Request }> {
-    const result = await this.client.post<void>({
+    const result = await this.client.post<undefined>({
       url: '/v0/users/-/collections/{subject_id}',
       path: { subject_id: subjectId },
       body: payload,
@@ -189,7 +189,7 @@ export class CollectionAPI {
     subjectId: number,
     payload: UserSubjectCollectionModifyPayload = {},
   ): Promise<{ data: undefined; error: unknown; response: Response; request: Request }> {
-    const result = await this.client.patch<void>({
+    const result = await this.client.patch<undefined>({
       url: '/v0/users/-/collections/{subject_id}',
       path: { subject_id: subjectId },
       body: payload,
@@ -254,7 +254,7 @@ export class CollectionAPI {
     subjectId: number,
     payload: PatchUserSubjectEpisodeCollectionPayload,
   ): Promise<{ data: undefined; error: unknown; response: Response; request: Request }> {
-    const result = await this.client.patch<void>({
+    const result = await this.client.patch<undefined>({
       url: '/v0/users/-/collections/{subject_id}/episodes',
       path: { subject_id: subjectId },
       body: payload,
@@ -310,7 +310,7 @@ export class CollectionAPI {
     episodeId: number,
     type: EpisodeCollectionType,
   ): Promise<{ data: undefined; error: unknown; response: Response; request: Request }> {
-    const result = await this.client.put<void>({
+    const result = await this.client.put<undefined>({
       url: '/v0/users/-/collections/-/episodes/{episode_id}',
       path: { episode_id: episodeId },
       body: { type },

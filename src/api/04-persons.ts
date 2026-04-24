@@ -220,7 +220,7 @@ export class PersonAPI {
     });
     if (this.debug) {
       // eslint-disable-next-line no-console
-      console.log('[PersonAPI.collectPerson]', result.response?.status);
+      console.log('[PersonAPI.collectPerson]', result.response.status);
     }
     return result as never;
   }
@@ -246,7 +246,7 @@ export class PersonAPI {
     });
     if (this.debug) {
       // eslint-disable-next-line no-console
-      console.log('[PersonAPI.uncollectPerson]', result.response?.status);
+      console.log('[PersonAPI.uncollectPerson]', result.response.status);
     }
     return result as never;
   }
