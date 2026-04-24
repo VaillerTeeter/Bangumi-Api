@@ -30,7 +30,7 @@ export interface BangumiClientOptions {
  */
 export interface ClientResult<T> {
   data: T | undefined;
-  error: unknown | undefined;
+  error: unknown;
   response: Response;
   request: Request;
 }
