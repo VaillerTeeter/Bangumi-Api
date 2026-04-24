@@ -1,4 +1,5 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
+import type { ClientResult } from '../client.js';
 import type {
   EpisodeCollectionType,
   EpType,
@@ -99,7 +100,7 @@ export class CollectionAPI {
       // eslint-disable-next-line no-console
       console.log('[CollectionAPI.getUserCollections]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<PagedUserCollection>;
   }
 
   /**
@@ -134,7 +135,7 @@ export class CollectionAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<UserSubjectCollection>;
   }
 
   /**
@@ -166,7 +167,7 @@ export class CollectionAPI {
       // eslint-disable-next-line no-console
       console.log('[CollectionAPI.postUserCollection]', result.response.status);
     }
-    return result as never;
+    return result as unknown as ClientResult<undefined>;
   }
 
   /**
@@ -198,7 +199,7 @@ export class CollectionAPI {
       // eslint-disable-next-line no-console
       console.log('[CollectionAPI.patchUserCollection]', result.response.status);
     }
-    return result as never;
+    return result as unknown as ClientResult<undefined>;
   }
 
   /**
@@ -235,7 +236,7 @@ export class CollectionAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<Page & { data?: UserEpisodeCollection[] }>;
   }
 
   /**
@@ -263,7 +264,7 @@ export class CollectionAPI {
       // eslint-disable-next-line no-console
       console.log('[CollectionAPI.patchUserSubjectEpisodeCollection]', result.response.status);
     }
-    return result as never;
+    return result as unknown as ClientResult<undefined>;
   }
 
   /**
@@ -291,7 +292,7 @@ export class CollectionAPI {
       // eslint-disable-next-line no-console
       console.log('[CollectionAPI.getUserEpisodeCollection]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<UserEpisodeCollection>;
   }
 
   /**
@@ -319,7 +320,7 @@ export class CollectionAPI {
       // eslint-disable-next-line no-console
       console.log('[CollectionAPI.putUserEpisodeCollection]', result.response.status);
     }
-    return result as never;
+    return result as unknown as ClientResult<undefined>;
   }
 
   /**
@@ -348,7 +349,7 @@ export class CollectionAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<PagedUserCharacterCollection>;
   }
 
   /**
@@ -381,7 +382,7 @@ export class CollectionAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<UserCharacterCollection>;
   }
 
   /**
@@ -407,7 +408,7 @@ export class CollectionAPI {
       // eslint-disable-next-line no-console
       console.log('[CollectionAPI.getUserPersonCollections]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<PagedUserPersonCollection>;
   }
 
   /**
@@ -437,6 +438,6 @@ export class CollectionAPI {
       // eslint-disable-next-line no-console
       console.log('[CollectionAPI.getUserPersonCollection]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<UserPersonCollection>;
   }
 }

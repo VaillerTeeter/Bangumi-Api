@@ -1,4 +1,5 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
+import type { ClientResult } from '../client.js';
 import type {
   Person,
   PersonCharacter,
@@ -79,7 +80,7 @@ export class PersonAPI {
       // eslint-disable-next-line no-console
       console.log('[PersonAPI.searchPersons]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<SearchPersonsResult>;
   }
 
   /**
@@ -105,7 +106,7 @@ export class PersonAPI {
       // eslint-disable-next-line no-console
       console.log('[PersonAPI.getPersonById]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<PersonDetail>;
   }
 
   /**
@@ -167,7 +168,7 @@ export class PersonAPI {
       // eslint-disable-next-line no-console
       console.log('[PersonAPI.getRelatedSubjectsByPersonId]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<V0RelatedSubject[]>;
   }
 
   /**
@@ -196,7 +197,7 @@ export class PersonAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<PersonCharacter[]>;
   }
 
   /**
@@ -222,7 +223,7 @@ export class PersonAPI {
       // eslint-disable-next-line no-console
       console.log('[PersonAPI.collectPerson]', result.response.status);
     }
-    return result as never;
+    return result as unknown as ClientResult<undefined>;
   }
 
   /**
@@ -248,6 +249,6 @@ export class PersonAPI {
       // eslint-disable-next-line no-console
       console.log('[PersonAPI.uncollectPerson]', result.response.status);
     }
-    return result as never;
+    return result as unknown as ClientResult<undefined>;
   }
 }

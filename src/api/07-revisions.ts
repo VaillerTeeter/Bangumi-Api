@@ -1,4 +1,5 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
+import type { ClientResult } from '../client.js';
 import type {
   PagedRevision,
   PersonRevision,
@@ -69,7 +70,7 @@ export class RevisionAPI {
       // eslint-disable-next-line no-console
       console.log('[RevisionAPI.getPersonRevisions]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<PagedRevision>;
   }
 
   /**
@@ -98,7 +99,7 @@ export class RevisionAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<PersonRevision>;
   }
 
   /**
@@ -129,7 +130,7 @@ export class RevisionAPI {
       // eslint-disable-next-line no-console
       console.log('[RevisionAPI.getCharacterRevisions]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<PagedRevision>;
   }
 
   /**
@@ -158,7 +159,7 @@ export class RevisionAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<CharacterRevision>;
   }
 
   /**
@@ -189,7 +190,7 @@ export class RevisionAPI {
       // eslint-disable-next-line no-console
       console.log('[RevisionAPI.getSubjectRevisions]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<PagedRevision>;
   }
 
   /**
@@ -218,7 +219,7 @@ export class RevisionAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<SubjectRevision>;
   }
 
   /**
@@ -249,7 +250,7 @@ export class RevisionAPI {
       // eslint-disable-next-line no-console
       console.log('[RevisionAPI.getEpisodeRevisions]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<PagedRevision>;
   }
 
   /**
@@ -278,6 +279,6 @@ export class RevisionAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<DetailedRevision>;
   }
 }

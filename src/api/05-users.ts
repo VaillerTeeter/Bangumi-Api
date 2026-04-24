@@ -1,4 +1,5 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
+import type { ClientResult } from '../client.js';
 import type { GetMyselfResponse, User } from '../generated/types.gen.js';
 
 /**
@@ -46,7 +47,7 @@ export class UserAPI {
       // eslint-disable-next-line no-console
       console.log('[UserAPI.getUserByName]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<User>;
   }
 
   /**
@@ -109,6 +110,6 @@ export class UserAPI {
       // eslint-disable-next-line no-console
       console.log('[UserAPI.getMyself]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<GetMyselfResponse>;
   }
 }

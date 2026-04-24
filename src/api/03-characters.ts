@@ -1,4 +1,5 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
+import type { ClientResult } from '../client.js';
 import type { Character, CharacterPerson, V0RelatedSubject } from '../generated/types.gen.js';
 
 /** `searchCharacters` 的可选参数。 */
@@ -83,7 +84,7 @@ export class CharacterAPI {
       // eslint-disable-next-line no-console
       console.log('[CharacterAPI.searchCharacters]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<SearchCharactersResult>;
   }
 
   /**
@@ -109,7 +110,7 @@ export class CharacterAPI {
       // eslint-disable-next-line no-console
       console.log('[CharacterAPI.getCharacterById]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<Character>;
   }
 
   /**
@@ -177,7 +178,7 @@ export class CharacterAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<V0RelatedSubject[]>;
   }
 
   /**
@@ -206,7 +207,7 @@ export class CharacterAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<CharacterPerson[]>;
   }
 
   /**
@@ -232,7 +233,7 @@ export class CharacterAPI {
       // eslint-disable-next-line no-console
       console.log('[CharacterAPI.collectCharacter]', result.response.status);
     }
-    return result as never;
+    return result as unknown as ClientResult<undefined>;
   }
 
   /**
@@ -258,6 +259,6 @@ export class CharacterAPI {
       // eslint-disable-next-line no-console
       console.log('[CharacterAPI.uncollectCharacter]', result.response.status);
     }
-    return result as never;
+    return result as unknown as ClientResult<undefined>;
   }
 }

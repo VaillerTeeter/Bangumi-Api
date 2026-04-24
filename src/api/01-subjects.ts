@@ -1,4 +1,5 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
+import type { ClientResult } from '../client.js';
 import type {
   RelatedCharacter,
   RelatedPerson,
@@ -251,7 +252,7 @@ export class SubjectAPI {
         console.log('[SubjectAPI.getCalendar]', JSON.stringify(result.data, null, 2));
       }
     }
-    return result as never;
+    return result as unknown as ClientResult<CalendarEntry[]>;
   }
 
   /**
@@ -285,7 +286,7 @@ export class SubjectAPI {
       // eslint-disable-next-line no-console
       console.log('[SubjectAPI.searchSubjects]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<SearchSubjectsResult>;
   }
 
   /**
@@ -321,7 +322,7 @@ export class SubjectAPI {
       // eslint-disable-next-line no-console
       console.log('[SubjectAPI.getSubjects]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<GetSubjectsResult>;
   }
 
   /**
@@ -345,7 +346,7 @@ export class SubjectAPI {
       // eslint-disable-next-line no-console
       console.log('[SubjectAPI.getSubjectById]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<Subject>;
   }
 
   /**
@@ -414,7 +415,7 @@ export class SubjectAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<RelatedPerson[]>;
   }
 
   /**
@@ -445,7 +446,7 @@ export class SubjectAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<RelatedCharacter[]>;
   }
 
   /**
@@ -475,6 +476,6 @@ export class SubjectAPI {
         JSON.stringify(result.data, null, 2),
       );
     }
-    return result as never;
+    return result as unknown as ClientResult<V0SubjectRelation[]>;
   }
 }

@@ -6,7 +6,7 @@
 
 // ── 客户端工厂（核心导出）────────────────────────────────────────────────
 export { createBangumiClient } from './client.js';
-export type { BangumiClient, BangumiClientOptions } from './client.js';
+export type { BangumiClient, BangumiClientOptions, ClientResult } from './client.js';
 
 // ── 高层封装 API 类（可选，供需要依赖注入的场景使用）────────────────────
 export { SubjectAPI } from './api/01-subjects.js';

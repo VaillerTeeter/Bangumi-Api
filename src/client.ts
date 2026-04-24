@@ -22,6 +22,19 @@ export interface BangumiClientOptions {
   userAgent?: string;
 }
 
+/**
+ * 所有 API 方法的通用返回结构。
+ *
+ * `T` 为 `data` 字段的具体类型，与底层 `@hey-api/client-fetch` 的调用结果形状一致，
+ * 替代原先的 `return result as never` 类型擦除写法。
+ */
+export type ClientResult<T> = {
+  data: T | undefined;
+  error: unknown;
+  response: Response;
+  request: Request;
+};
+
 export interface BangumiClient {
   readonly subjects: SubjectAPI;
   readonly episodes: EpisodeAPI;
@@ -55,7 +68,7 @@ export function createBangumiClient(options: BangumiClientOptions = {}): Bangumi
   const { baseUrl = DEFAULT_BASE_URL, userAgent = DEFAULT_USER_AGENT } = options;
 
   const headers: Record<string, string> = { 'User-Agent': userAgent };
-  if ('token' in options) {
+  if (options.token !== undefined) {
     headers.Authorization = `Bearer ${options.token}`;
   }
 

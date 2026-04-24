@@ -1,4 +1,5 @@
-﻿import type { Client } from '../generated/client/index.js';
+import type { Client } from '../generated/client/index.js';
+import type { ClientResult } from '../client.js';
 import type {
   Index,
   IndexBasicInfo,
@@ -58,7 +59,7 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.newIndex]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<Index>;
   }
 
   /**
@@ -81,7 +82,7 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.getIndexById]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<Index>;
   }
 
   /**
@@ -110,7 +111,7 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.editIndexById]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<Index>;
   }
 
   /**
@@ -150,7 +151,12 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.getIndexSubjects]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<{
+      total: number;
+      limit: number;
+      offset: number;
+      data: IndexSubject[];
+    }>;
   }
 
   /**
@@ -179,7 +185,7 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.addSubjectToIndex]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<unknown>;
   }
 
   /**
@@ -210,7 +216,7 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.editIndexSubject]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<unknown>;
   }
 
   /**
@@ -236,7 +242,7 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.deleteIndexSubject]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<unknown>;
   }
 
   /**
@@ -263,7 +269,7 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.collectIndex]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<unknown>;
   }
 
   /**
@@ -288,6 +294,6 @@ export class IndexAPI {
       // eslint-disable-next-line no-console
       console.log('[IndexAPI.uncollectIndex]', JSON.stringify(result.data, null, 2));
     }
-    return result as never;
+    return result as unknown as ClientResult<unknown>;
   }
 }
