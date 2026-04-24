@@ -188,7 +188,10 @@ function normalizeSubject(item: Record<string, unknown>): CalendarSubject {
     eps_count: (item.eps_count as number | undefined) ?? null,
     rating: rawRating === undefined || rawRating === null ? null : normalizeRating(rawRating),
     rank: (item.rank as number | undefined) ?? null,
-    collection: rawCollection === undefined || rawCollection === null ? null : normalizeCollection(rawCollection),
+    collection:
+      rawCollection === undefined || rawCollection === null
+        ? null
+        : normalizeCollection(rawCollection),
   };
 }
 
@@ -397,7 +400,8 @@ export class SubjectAPI {
       response: Response;
       request: Request;
     };
-    const imageUrl = result.error === null || result.error === undefined ? result.response.url : undefined;
+    const imageUrl =
+      result.error === null || result.error === undefined ? result.response.url : undefined;
     if (this.debug) {
       // eslint-disable-next-line no-console
       console.log('[SubjectAPI.getSubjectImageById]', imageUrl);
