@@ -40,7 +40,7 @@ export type {
 } from './api/06-collections.js';
 
 export { RevisionAPI } from './api/07-revisions.js';
-export type { GetPersonRevisionsOptions } from './api/07-revisions.js';
+export type { GetRevisionsOptions } from './api/07-revisions.js';
 
 export { IndexAPI } from './api/08-indices.js';
 
