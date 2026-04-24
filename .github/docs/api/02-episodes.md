@@ -1,4 +1,4 @@
-# EpisodeAPI — 章节
+﻿# EpisodeAPI — 章节
 
 章节（Episode）是条目的组成单元，包含本篇、SP、OP、ED 等类型。
 
@@ -36,7 +36,7 @@ const bgm = createBangumiClient();
 getEpisodes(
   subjectId: number,
   options?: GetEpisodesOptions
-): Promise<Result<GetEpisodesResult>>
+): Promise<ClientResult<GetEpisodesResult>>
 ```
 
 ### 参数
@@ -82,7 +82,7 @@ getEpisodes(
 | `name_cn` | `string` | 章节中文名 |
 | `sort` | `number` | 章节序号（如第 1 话 = `1`） |
 | `ep` | `number` | 播出集数 |
-| `air_date` | `string` | 放送日期（`YYYY-MM-DD`） |
+| `airdate` | `string` | 放送日期（`YYYY-MM-DD`） |
 | `duration` | `string` | 时长（如 `"24m"`） |
 | `desc` | `string` | 简介 |
 | `disc` | `number` | 所在碟号（音乐类条目） |
@@ -106,7 +106,7 @@ if (response.status === 404) {
 } else if (data) {
   console.log(`共 ${data.total} 话`);
   data.data.forEach(ep => {
-    console.log(`第 ${ep.sort} 话 ${ep.name_cn || ep.name}（${ep.air_date}）`);
+    console.log(`第 ${ep.sort} 话 ${ep.name_cn || ep.name}（${ep.airdate}）`);
   });
 }
 
@@ -124,7 +124,7 @@ const page2 = await bgm.episodes.getEpisodes(374791, { limit: 10, offset: 10 });
 ### 签名
 
 ```ts
-getEpisodeById(episodeId: number): Promise<Result<EpisodeDetail>>
+getEpisodeById(episodeId: number): Promise<ClientResult<EpisodeDetail>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -164,7 +164,7 @@ if (response.status === 404) {
 } else if (data) {
   console.log(`[条目 ${data.subject_id}] 第 ${data.sort} 话`);
   console.log(data.name_cn || data.name);
-  console.log(`放送日期：${data.air_date}`);
+  console.log(`放送日期：${data.airdate}`);
 }
 ```
 

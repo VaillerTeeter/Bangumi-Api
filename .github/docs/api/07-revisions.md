@@ -1,4 +1,4 @@
-# RevisionAPI — 编辑历史
+﻿# RevisionAPI — 编辑历史
 
 编辑历史（Revision）模块提供对条目、章节、角色、人物编辑记录的查询功能，可用于追溯 Wiki 数据的变更历史。
 
@@ -73,7 +73,7 @@ const bgm = createBangumiClient();
 getPersonRevisions(
   personId: number,
   options?: { limit?: number; offset?: number }
-): Promise<Result<PagedRevision>>
+): Promise<ClientResult<PagedRevision>>
 ```
 
 ### 参数
@@ -110,7 +110,7 @@ data?.data.forEach(r => {
 ### 签名
 
 ```ts
-getPersonRevisionByRevisionId(revisionId: number): Promise<Result<PersonRevision>>
+getPersonRevisionByRevisionId(revisionId: number): Promise<ClientResult<PersonRevision>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -151,7 +151,7 @@ console.log(data?.data); // 本次变更的详细 diff
 getCharacterRevisions(
   characterId: number,
   options?: { limit?: number; offset?: number }
-): Promise<Result<PagedRevision>>
+): Promise<ClientResult<PagedRevision>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -182,7 +182,7 @@ data?.data.forEach(r => console.log(`[${r.id}] ${r.summary}`));
 ### 签名
 
 ```ts
-getCharacterRevisionByRevisionId(revisionId: number): Promise<Result<CharacterRevision>>
+getCharacterRevisionByRevisionId(revisionId: number): Promise<ClientResult<CharacterRevision>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -222,7 +222,7 @@ console.log(data?.creator.username, data?.created_at);
 getSubjectRevisions(
   subjectId: number,
   options?: { limit?: number; offset?: number }
-): Promise<Result<PagedRevision>>
+): Promise<ClientResult<PagedRevision>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -253,7 +253,7 @@ console.log(`条目共有 ${data?.total} 条编辑历史`);
 ### 签名
 
 ```ts
-getSubjectRevisionByRevisionId(revisionId: number): Promise<Result<SubjectRevision>>
+getSubjectRevisionByRevisionId(revisionId: number): Promise<ClientResult<SubjectRevision>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -293,7 +293,7 @@ console.log(data?.summary, data?.data);
 getEpisodeRevisions(
   episodeId: number,
   options?: { limit?: number; offset?: number }
-): Promise<Result<PagedRevision>>
+): Promise<ClientResult<PagedRevision>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -324,7 +324,7 @@ data?.data.forEach(r => console.log(`[${r.id}] ${r.summary}`));
 ### 签名
 
 ```ts
-getEpisodeRevisionByRevisionId(revisionId: number): Promise<Result<DetailedRevision>>
+getEpisodeRevisionByRevisionId(revisionId: number): Promise<ClientResult<DetailedRevision>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->

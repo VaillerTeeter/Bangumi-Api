@@ -1,4 +1,4 @@
-# UserAPI — 用户
+﻿# UserAPI — 用户
 
 用户（User）模块提供用户信息查询、头像获取和当前登录用户信息获取功能。
 
@@ -39,7 +39,7 @@ const bgmAuth = createBangumiClient({ token: 'your-access-token' });
 ### 签名
 
 ```ts
-getUserByName(username: string): Promise<Result<User>>
+getUserByName(username: string): Promise<ClientResult<User>>
 ```
 
 ### 参数
@@ -155,7 +155,7 @@ if (imageUrl) {
 ### 签名
 
 ```ts
-getMyself(): Promise<Result<GetMyselfResponse>>
+getMyself(): Promise<ClientResult<GetMyselfResponse>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->

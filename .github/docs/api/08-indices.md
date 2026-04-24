@@ -1,4 +1,4 @@
-# IndexAPI — 目录
+﻿# IndexAPI — 目录
 
 目录（Index）是用户自建的条目合集，类似于"片单"或"书单"。本模块提供目录的创建、编辑、条目管理及收藏功能。
 
@@ -43,7 +43,7 @@ const bgmAuth = createBangumiClient({ token: 'your-access-token' });
 ### 签名
 
 ```ts
-newIndex(): Promise<Result<Index>>
+newIndex(): Promise<ClientResult<Index>>
 ```
 
 ### 返回
@@ -89,7 +89,7 @@ if (response.status === 401) {
 ### 签名
 
 ```ts
-getIndexById(indexId: number): Promise<Result<Index>>
+getIndexById(indexId: number): Promise<ClientResult<Index>>
 ```
 
 ### 参数
@@ -136,7 +136,7 @@ if (response.status === 404) {
 editIndexById(
   indexId: number,
   body?: IndexBasicInfo
-): Promise<Result<Index>>
+): Promise<ClientResult<Index>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -187,7 +187,7 @@ console.log(data?.title);
 getIndexSubjects(
   indexId: number,
   options?: { type?: number; limit?: number; offset?: number }
-): Promise<Result<{ total: number; limit: number; offset: number; data: IndexSubject[] }>>
+): Promise<ClientResult<{ total: number; limit: number; offset: number; data: IndexSubject[] }>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -257,7 +257,7 @@ data?.data.forEach(s => {
 addSubjectToIndex(
   indexId: number,
   body?: IndexSubjectAddInfo
-): Promise<Result<unknown>>
+): Promise<ClientResult<unknown>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -309,7 +309,7 @@ editIndexSubject(
   indexId: number,
   subjectId: number,
   body?: IndexSubjectEditInfo
-): Promise<Result<unknown>>
+): Promise<ClientResult<unknown>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -359,7 +359,7 @@ await bgmAuth.indices.editIndexSubject(12345, 374791, {
 deleteIndexSubject(
   indexId: number,
   subjectId: number
-): Promise<Result<unknown>>
+): Promise<ClientResult<unknown>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -402,7 +402,7 @@ console.log(response.status); // 200
 ### 签名
 
 ```ts
-collectIndex(indexId: number): Promise<Result<unknown>>
+collectIndex(indexId: number): Promise<ClientResult<unknown>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -447,7 +447,7 @@ console.log(response.status); // 200
 ### 签名
 
 ```ts
-uncollectIndex(indexId: number): Promise<Result<unknown>>
+uncollectIndex(indexId: number): Promise<ClientResult<unknown>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->

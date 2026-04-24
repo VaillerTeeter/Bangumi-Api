@@ -1,4 +1,4 @@
-# CharacterAPI — 角色
+﻿# CharacterAPI — 角色
 
 角色（Character）是条目中的虚构人物、机体、舰船或组织。本模块提供角色搜索、详情查询、图片获取及收藏管理功能。
 
@@ -44,7 +44,7 @@ const bgmAuth = createBangumiClient({ token: 'your-access-token' });
 searchCharacters(
   keyword: string,
   options?: SearchCharactersOptions
-): Promise<Result<SearchCharactersResult>>
+): Promise<ClientResult<SearchCharactersResult>>
 ```
 
 ### 参数
@@ -87,7 +87,7 @@ data?.data.forEach(c => console.log(`[${c.id}] ${c.name}`));
 ### 签名
 
 ```ts
-getCharacterById(characterId: number): Promise<Result<Character>>
+getCharacterById(characterId: number): Promise<ClientResult<Character>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -204,7 +204,7 @@ if (imageUrl) {
 ### 签名
 
 ```ts
-getRelatedSubjectsByCharacterId(characterId: number): Promise<Result<V0RelatedSubject[]>>
+getRelatedSubjectsByCharacterId(characterId: number): Promise<ClientResult<V0RelatedSubject[]>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -257,7 +257,7 @@ data?.forEach(s => {
 ### 签名
 
 ```ts
-getRelatedPersonsByCharacterId(characterId: number): Promise<Result<CharacterPerson[]>>
+getRelatedPersonsByCharacterId(characterId: number): Promise<ClientResult<CharacterPerson[]>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -303,7 +303,7 @@ data?.forEach(p => {
 ### 签名
 
 ```ts
-collectCharacter(characterId: number): Promise<Result<undefined>>
+collectCharacter(characterId: number): Promise<ClientResult<undefined>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -352,7 +352,7 @@ if (response.status === 204) {
 ### 签名
 
 ```ts
-uncollectCharacter(characterId: number): Promise<Result<undefined>>
+uncollectCharacter(characterId: number): Promise<ClientResult<undefined>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->

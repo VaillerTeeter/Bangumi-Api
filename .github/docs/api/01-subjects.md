@@ -1,4 +1,4 @@
-# SubjectAPI — 条目
+﻿# SubjectAPI — 条目
 
 条目（Subject）是 Bangumi 的核心资源，涵盖动画、书籍、音乐、游戏、三次元等五种类型。
 
@@ -41,7 +41,7 @@ const bgm = createBangumiClient();
 ### 签名
 
 ```ts
-getCalendar(): Promise<Result<CalendarEntry[]>>
+getCalendar(): Promise<ClientResult<CalendarEntry[]>>
 ```
 
 ### 返回
@@ -86,7 +86,7 @@ for (const entry of data!) {
 ### 签名
 
 ```ts
-searchSubjects(options: SearchSubjectsOptions): Promise<Result<SearchSubjectsResult>>
+searchSubjects(options: SearchSubjectsOptions): Promise<ClientResult<SearchSubjectsResult>>
 ```
 
 ### 参数
@@ -155,7 +155,7 @@ if (data) {
 ### 签名
 
 ```ts
-getSubjects(options: GetSubjectsOptions): Promise<Result<GetSubjectsResult>>
+getSubjects(options: GetSubjectsOptions): Promise<ClientResult<GetSubjectsResult>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -221,7 +221,7 @@ data?.data.forEach(s => console.log(`#${s.rating?.rank} ${s.name_cn || s.name}`)
 ### 签名
 
 ```ts
-getSubjectById(subjectId: number): Promise<Result<Subject>>
+getSubjectById(subjectId: number): Promise<ClientResult<Subject>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -342,7 +342,7 @@ if (imageUrl) {
 ### 签名
 
 ```ts
-getRelatedPersonsBySubjectId(subjectId: number): Promise<Result<RelatedPerson[]>>
+getRelatedPersonsBySubjectId(subjectId: number): Promise<ClientResult<RelatedPerson[]>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -395,7 +395,7 @@ data?.forEach(p => {
 ### 签名
 
 ```ts
-getRelatedCharactersBySubjectId(subjectId: number): Promise<Result<RelatedCharacter[]>>
+getRelatedCharactersBySubjectId(subjectId: number): Promise<ClientResult<RelatedCharacter[]>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -444,7 +444,7 @@ data?.forEach(c => {
 ### 签名
 
 ```ts
-getRelatedSubjectsBySubjectId(subjectId: number): Promise<Result<V0SubjectRelation[]>>
+getRelatedSubjectsBySubjectId(subjectId: number): Promise<ClientResult<V0SubjectRelation[]>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->

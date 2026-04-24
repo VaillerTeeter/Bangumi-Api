@@ -1,4 +1,4 @@
-# PersonAPI — 人物
+﻿# PersonAPI — 人物
 
 人物（Person）是 Bangumi 中的现实人物或组织，包括个人、公司和组合。本模块提供人物搜索、详情查询、图片获取及收藏管理功能。
 
@@ -44,7 +44,7 @@ const bgmAuth = createBangumiClient({ token: 'your-access-token' });
 searchPersons(
   keyword: string,
   options?: SearchPersonsOptions
-): Promise<Result<SearchPersonsResult>>
+): Promise<ClientResult<SearchPersonsResult>>
 ```
 
 ### 参数
@@ -103,7 +103,7 @@ data?.data.forEach(p => console.log(`[${p.id}] ${p.name}`));
 ### 签名
 
 ```ts
-getPersonById(personId: number): Promise<Result<PersonDetail>>
+getPersonById(personId: number): Promise<ClientResult<PersonDetail>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -220,7 +220,7 @@ if (imageUrl) {
 ### 签名
 
 ```ts
-getRelatedSubjectsByPersonId(personId: number): Promise<Result<V0RelatedSubject[]>>
+getRelatedSubjectsByPersonId(personId: number): Promise<ClientResult<V0RelatedSubject[]>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -274,7 +274,7 @@ data?.forEach(s => {
 ### 签名
 
 ```ts
-getRelatedCharactersByPersonId(personId: number): Promise<Result<PersonCharacter[]>>
+getRelatedCharactersByPersonId(personId: number): Promise<ClientResult<PersonCharacter[]>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -322,7 +322,7 @@ data?.forEach(c => {
 ### 签名
 
 ```ts
-collectPerson(personId: number): Promise<Result<undefined>>
+collectPerson(personId: number): Promise<ClientResult<undefined>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -371,7 +371,7 @@ if (response.status === 204) {
 ### 签名
 
 ```ts
-uncollectPerson(personId: number): Promise<Result<undefined>>
+uncollectPerson(personId: number): Promise<ClientResult<undefined>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->

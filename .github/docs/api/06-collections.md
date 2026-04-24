@@ -1,4 +1,4 @@
-# CollectionAPI — 收藏
+﻿# CollectionAPI — 收藏
 
 收藏（Collection）模块提供条目收藏的增删改查、章节收藏状态管理，以及角色/人物收藏查询功能。
 
@@ -81,7 +81,7 @@ const bgmAuth = createBangumiClient({ token: 'your-access-token' });
 getUserCollections(
   username: string,
   options?: GetUserCollectionsOptions
-): Promise<Result<PagedUserCollection>>
+): Promise<ClientResult<PagedUserCollection>>
 ```
 
 ### 参数
@@ -156,7 +156,7 @@ data?.data.forEach(c => {
 getUserCollectionBySubjectId(
   username: string,
   subjectId: number
-): Promise<Result<UserSubjectCollection>>
+): Promise<ClientResult<UserSubjectCollection>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -211,7 +211,7 @@ if (response.status === 404) {
 postUserCollection(
   subjectId: number,
   payload?: UserSubjectCollectionModifyPayload
-): Promise<Result<undefined>>
+): Promise<ClientResult<undefined>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -272,7 +272,7 @@ console.log(response.status); // 204
 patchUserCollection(
   subjectId: number,
   payload?: UserSubjectCollectionModifyPayload
-): Promise<Result<undefined>>
+): Promise<ClientResult<undefined>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -315,7 +315,7 @@ await bgmAuth.collections.patchUserCollection(374791, { rate: 10 });
 getUserSubjectEpisodeCollection(
   subjectId: number,
   options?: GetUserSubjectEpisodeCollectionOptions
-): Promise<Result<Page & { data?: UserEpisodeCollection[] }>>
+): Promise<ClientResult<Page & { data?: UserEpisodeCollection[] }>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -384,7 +384,7 @@ data?.data?.forEach(ec => {
 patchUserSubjectEpisodeCollection(
   subjectId: number,
   payload: PatchUserSubjectEpisodeCollectionPayload
-): Promise<Result<undefined>>
+): Promise<ClientResult<undefined>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -431,7 +431,7 @@ await bgmAuth.collections.patchUserSubjectEpisodeCollection(374791, {
 ### 签名
 
 ```ts
-getUserEpisodeCollection(episodeId: number): Promise<Result<UserEpisodeCollection>>
+getUserEpisodeCollection(episodeId: number): Promise<ClientResult<UserEpisodeCollection>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -479,7 +479,7 @@ console.log(`章节状态：${data?.type}，更新于：${data?.updated_at}`);
 putUserEpisodeCollection(
   episodeId: number,
   type: EpisodeCollectionType
-): Promise<Result<undefined>>
+): Promise<ClientResult<undefined>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -522,7 +522,7 @@ await bgmAuth.collections.putUserEpisodeCollection(1077185, 2);
 ### 签名
 
 ```ts
-getUserCharacterCollections(username: string): Promise<Result<PagedUserCharacterCollection>>
+getUserCharacterCollections(username: string): Promise<ClientResult<PagedUserCharacterCollection>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -566,7 +566,7 @@ console.log(`共收藏角色 ${data?.total} 个`);
 getUserCharacterCollection(
   username: string,
   characterId: number
-): Promise<Result<UserCharacterCollection>>
+): Promise<ClientResult<UserCharacterCollection>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -608,7 +608,7 @@ if (response.status === 404) {
 ### 签名
 
 ```ts
-getUserPersonCollections(username: string): Promise<Result<PagedUserPersonCollection>>
+getUserPersonCollections(username: string): Promise<ClientResult<PagedUserPersonCollection>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
@@ -652,7 +652,7 @@ console.log(`共收藏人物 ${data?.total} 个`);
 getUserPersonCollection(
   username: string,
   personId: number
-): Promise<Result<UserPersonCollection>>
+): Promise<ClientResult<UserPersonCollection>>
 ```
 
 <!-- markdownlint-disable-next-line MD024 -->
