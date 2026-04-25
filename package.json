@@ -1,0 +1,41 @@
+{
+  "name": "bangumi-api-client",
+  "version": "2026.2.22",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": "git@github.com:VaillerTeeter/bangumi-api-client.git",
+  "author": "Vaciller <wyc_19533480830@outlook.com>",
+  "license": "GPL-3.0-only",
+  "engines": {
+    "node": ">=21"
+  },
+  "scripts": {
+    "generate": "openapi-ts && node scripts/generate-version.js",
+    "prebuild": "yarn generate",
+    "build": "tsc",
+    "pretypecheck": "yarn generate",
+    "typecheck": "tsc --noEmit",
+    "pretest": "yarn generate",
+    "test": "vitest run tests/integration",
+    "prepare": "yarn build"
+  },
+  "dependencies": {
+    "@hey-api/client-fetch": "^0.13.1"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.96.1",
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  }
+}

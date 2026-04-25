@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "types": ["node"],
 
     "strict": true,
     "noUnusedLocals": true,
@@ -14,25 +15,17 @@
     "exactOptionalPropertyTypes": true,
     "useUnknownInCatchVariables": true,
 
+    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "allowJs": false,
 
     "declaration": false,
     "sourceMap": false,
     "removeComments": false
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.vue"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build",
-    ".github",
-    "coverage",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "include": ["../../../src/**/*.ts"],
+  "exclude": ["../../../src/generated/**", "../../../src/version.ts"]
 }
