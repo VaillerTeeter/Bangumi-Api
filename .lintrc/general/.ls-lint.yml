@@ -31,3 +31,6 @@ ls:
 # ============================================================
 ignore:
   - .git
+  - node_modules
+  - dist
+  - src/generated
