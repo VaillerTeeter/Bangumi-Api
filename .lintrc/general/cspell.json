@@ -116,7 +116,6 @@
 
   "enableGlobDot": true,
   "useGitignore": true,
-  "reportUnknownWords": true,
   "maxNumberOfProblems": 50,
   "minWordLength": 4
 }
