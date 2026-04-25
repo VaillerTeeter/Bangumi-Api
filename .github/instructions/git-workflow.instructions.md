@@ -53,7 +53,7 @@ NEVER commit or push directly to `master`.
 
 Always create a feature branch before any commit:
 <!-- 所有变更走功能分支，命名规范如下 -->
-```
+```text
 feat/<description>   # 新功能
 fix/<description>    # 修复
 chore/<description>  # 维护/杂项
@@ -80,7 +80,7 @@ If a PR body already exists, MUST append, NEVER overwrite.
 
 Always use merge commit (the only strategy enabled in repo settings):
 <!-- 仓库设置中只开启了 Allow merge commits，禁止使用 squash 或 rebase -->
-```
+```bash
 gh pr merge <number> --merge --delete-branch
 ```
 
@@ -91,7 +91,7 @@ gh pr merge <number> --merge --delete-branch
 Always prefer GitHub MCP tools over `gh` CLI for any GitHub operation (issues, PRs, files, branches):
 <!-- GitHub 操作优先用 MCP 工具，其次才是 gh CLI，最后才是裸 git 命令 -->
 
-```
+```text
 1st choice: mcp_github_*        # GitHub MCP — 结构化、无需 shell
 2nd choice: gh <command>        # gh CLI — 需要 token 加载
 3rd choice: git <command>       # 仅限纯本地操作（log / diff / status 等）

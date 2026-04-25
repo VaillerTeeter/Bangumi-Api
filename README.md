@@ -241,7 +241,7 @@ npm publish
 目前包含的指令文件：
 
 | 文件 | 说明 |
-|---|---|
+| --- | --- |
 | [git-workflow.instructions.md](.github/instructions/git-workflow.instructions.md) | AI git 操作行为规范（授权要求、分支命名、提交规范、PR 工作流） |
 
 ## 相关链接

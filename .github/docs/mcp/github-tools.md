@@ -9,7 +9,7 @@
 ## Issue 管理
 
 | 工具 | 功能 |
-|------|------|
+| --- | --- |
 | `mcp_github_list_issues` | 列出仓库的所有 Issues（支持过滤状态、标签等） |
 | `mcp_github_get_issue` | 获取指定 Issue 的详情 |
 | `mcp_github_create_issue` | 新建 Issue（支持标题、内容、标签、指派人、里程碑） |
@@ -22,7 +22,7 @@
 ## Pull Request 管理
 
 | 工具 | 功能 |
-|------|------|
+| --- | --- |
 | `mcp_github_list_pull_requests` | 列出仓库的所有 PR（支持过滤状态、分支等） |
 | `mcp_github_get_pull_request` | 获取指定 PR 的详情 |
 | `mcp_github_create_pull_request` | 创建新 PR（标题、内容、source/target 分支、draft 模式） |
@@ -39,7 +39,7 @@
 ## 文件与提交
 
 | 工具 | 功能 |
-|------|------|
+| --- | --- |
 | `mcp_github_get_file_contents` | 读取仓库中指定文件或目录的内容（支持指定分支） |
 | `mcp_github_create_or_update_file` | 创建或更新仓库中的单个文件 |
 | `mcp_github_push_files` | 一次性推送多个文件到指定分支（单次 commit） |
@@ -50,7 +50,7 @@
 ## 分支与仓库
 
 | 工具 | 功能 |
-|------|------|
+| --- | --- |
 | `mcp_github_create_branch` | 创建新分支（可指定来源分支） |
 | `mcp_github_create_repository` | 创建新 GitHub 仓库 |
 | `mcp_github_fork_repository` | Fork 一个仓库 |
@@ -60,7 +60,7 @@
 ## 搜索
 
 | 工具 | 功能 |
-|------|------|
+| --- | --- |
 | `mcp_github_search_repositories` | 搜索 GitHub 上的仓库 |
 | `mcp_github_search_code` | 在 GitHub 上搜索代码片段 |
 | `mcp_github_search_issues` | 搜索 Issues / PR（同上，复用） |
@@ -71,13 +71,15 @@
 ## 使用说明
 
 ### Token 配置
+
 首次使用时 VS Code 会弹出输入框，填入 `.env` 文件中的 `GH_TOKEN` 值。Token 由 VS Code 加密存储，不会写入任何配置文件。
 
 ### 写操作需要用户确认
+
 以下写操作工具受 `PreToolUse` Hook（[`git-guard.sh`](../hooks/git-guard.md)）拦截，执行前会弹出用户确认框：
 
 | 类型 | 工具 |
-|------|------|
+| --- | --- |
 | PR 写操作 | `create_pull_request` / `merge_pull_request` / `create_pull_request_review` / `update_pull_request_branch` |
 | 文件推送 | `push_files` / `create_or_update_file` |
 | 分支 / 仓库 | `create_branch` / `create_repository` / `fork_repository` |
@@ -86,5 +88,6 @@
 只读工具（`get_*` / `list_*` / `search_*`）在 `.vscode/settings.json` 中配置为自动批准，无需确认。
 
 ### 让 Copilot 优先使用 MCP
-在对话中说「用 MCP」或「通过 GitHub MCP」即可触发。  
+
+在对话中说「用 MCP」或「通过 GitHub MCP」即可触发。
 也可在 `.github/instructions/git-workflow.instructions.md` 中添加规则，让 Copilot 在所有 GitHub 操作中自动优先使用 MCP 工具。

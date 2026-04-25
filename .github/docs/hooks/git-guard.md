@@ -4,7 +4,7 @@
 
 ## 文件结构
 
-```
+```text
 .github/hooks/
 ├── git-guard.json          # Hook 注册配置
 └── scripts/
@@ -13,7 +13,7 @@
 
 ## 工作原理
 
-```
+```text
 AI 发起工具调用
         │
         ▼
@@ -42,7 +42,7 @@ Hook 返回 `ask` 时，Copilot 会暂停执行并弹窗，由用户决定是否
 ### git 写操作 / 历史变更
 
 | 命令 | 说明 |
-|------|------|
+| --- | --- |
 | `git add` | 暂存文件变更 |
 | `git commit` | 提交变更 |
 | `git push` | 推送到远程 |
@@ -59,7 +59,7 @@ Hook 返回 `ask` 时，Copilot 会暂停执行并弹窗，由用户决定是否
 ### git 分支删除
 
 | 命令 | 说明 |
-|------|------|
+| --- | --- |
 | `git branch -d` | 删除已合并分支 |
 | `git branch -D` | 强制删除分支 |
 | `git branch --delete` | 同 `-d` |
@@ -67,7 +67,7 @@ Hook 返回 `ask` 时，Copilot 会暂停执行并弹窗，由用户决定是否
 ### git stash 销毁
 
 | 命令 | 说明 |
-|------|------|
+| --- | --- |
 | `git stash drop` | 删除指定 stash |
 | `git stash pop` | 弹出并删除 stash |
 | `git stash clear` | 清空所有 stash |
@@ -75,7 +75,7 @@ Hook 返回 `ask` 时，Copilot 会暂停执行并弹窗，由用户决定是否
 ### gh CLI 操作
 
 | 命令 | 说明 |
-|------|------|
+| --- | --- |
 | `gh pr create` | 创建 Pull Request |
 | `gh pr merge` | 合并 Pull Request |
 | `gh pr close` | 关闭 Pull Request |
@@ -88,7 +88,7 @@ Hook 返回 `ask` 时，Copilot 会暂停执行并弹窗，由用户决定是否
 ### GitHub MCP 写操作
 
 | 工具 | 说明 |
-|------|------|
+| --- | --- |
 | `mcp_github_create_pull_request` | 创建 PR |
 | `mcp_github_merge_pull_request` | 合并 PR |
 | `mcp_github_push_files` | 推送多个文件 |
@@ -108,7 +108,7 @@ Hook 返回 `ask` 时，Copilot 会暂停执行并弹窗，由用户决定是否
 
 只读操作直接通过，包括但不限于：
 
-```
+```text
 git status / log / diff / show / fetch / clone
 git branch / git branch -v/-a/-r（无 -d/-D）
 git tag / git tag -l（仅列出）
