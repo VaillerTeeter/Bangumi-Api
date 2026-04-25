@@ -1,4 +1,4 @@
-import packageJson from '../package.json' with { type: 'json' };
+import { VERSION } from './version.js';
 
 import { SubjectAPI } from './api/01-subjects.js';
 import { EpisodeAPI } from './api/02-episodes.js';
@@ -12,9 +12,7 @@ import { createClient } from './generated/client/index.js';
 
 const DEFAULT_BASE_URL = 'https://api.bgm.tv';
 
-const PKG_VERSION: string = packageJson.version;
-
-const DEFAULT_USER_AGENT = `bangumi-api-client/${PKG_VERSION} (https://github.com/VaillerTeeter/bangumi-api-client)`;
+const DEFAULT_USER_AGENT = `bangumi-api-client/${VERSION} (https://github.com/VaillerTeeter/bangumi-api-client)`;
 
 export interface BangumiClientOptions {
   token?: string;

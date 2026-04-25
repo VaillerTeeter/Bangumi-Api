@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit",
     "pretest": "yarn generate",
     "test": "vitest run tests/integration",
-    "prepare": "yarn generate && yarn build"
+    "prepare": "yarn build"
   },
   "dependencies": {
     "@hey-api/client-fetch": "^0.13.1"

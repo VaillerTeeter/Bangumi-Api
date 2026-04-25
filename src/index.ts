@@ -1,7 +1,7 @@
 /**
  * 公开 API 入口
  *
- * ⚠️  在 build 之前，必须先运行 `npm run generate` 生成 src/generated/ 目录。
+ * `src/generated/` 目录由 prebuild / pretypecheck / pretest 生命周期钩子自动生成。
  */
 
 // ── 客户端工厂（核心导出）────────────────────────────────────────────────
