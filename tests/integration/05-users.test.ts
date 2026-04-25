@@ -96,8 +96,8 @@ describe('UserAPI 集成测试', () => {
     let bgmAuth!: ReturnType<typeof createBangumiClient>;
 
     beforeAll(() => {
-      if (token) {
-        bgmAuth = createBangumiClient({ token });
+      if (hasToken) {
+        bgmAuth = createBangumiClient({ token: token!.trim() });
       }
     });
 

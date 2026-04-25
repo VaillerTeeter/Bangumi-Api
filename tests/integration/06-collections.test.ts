@@ -95,8 +95,8 @@ describe('CollectionAPI 集成测试', () => {
     let selfUsername!: string;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
       // 通过 getMyself() 动态获取当前 token 对应的用户名
       const result = await bgmAuth.users.getMyself();
       selfUsername = result.data!.username;
@@ -201,8 +201,8 @@ describe('CollectionAPI 集成测试', () => {
     let selfSubjectId = 0;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
       const meResult = await bgmAuth.users.getMyself();
       selfUsername = meResult.data!.username;
       // 获取自己的第一条收藏（含私有），取得 subject_id
@@ -238,8 +238,8 @@ describe('CollectionAPI 集成测试', () => {
     const testSubjectId = 976;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -296,8 +296,8 @@ describe('CollectionAPI 集成测试', () => {
     const testSubjectId = 976; // 凉宫春日的忧郁
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -355,8 +355,8 @@ describe('CollectionAPI 集成测试', () => {
     const testSubjectId = 976;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -438,8 +438,8 @@ describe('CollectionAPI 集成测试', () => {
     const testSubjectId = 976;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
       // 取前 3 个章节 ID 供批量修改测试使用
       const r = await bgmAuth.collections.getUserSubjectEpisodeCollection(testSubjectId, { limit: 3 });
       episodeIds = r.data?.data?.map(e => e.episode.id) ?? [];
@@ -509,8 +509,8 @@ describe('CollectionAPI 集成测试', () => {
     let knownEpisodeId = 0;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
       // 从 subject_id=976（凉宫春日的忧郁）获取一个已收藏的章节 ID
       const r = await bgmAuth.collections.getUserSubjectEpisodeCollection(976, { limit: 1 });
       knownEpisodeId = r.data?.data?.[0]?.episode.id ?? 0;
@@ -569,8 +569,8 @@ describe('CollectionAPI 集成测试', () => {
     let knownEpisodeId = 0;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
       // 从 subject_id=976（凉宫春日的忧郁）获取一个已收藏的章节 ID
       const r = await bgmAuth.collections.getUserSubjectEpisodeCollection(976, { limit: 1 });
       knownEpisodeId = r.data?.data?.[0]?.episode.id ?? 0;

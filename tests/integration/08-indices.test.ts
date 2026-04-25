@@ -14,8 +14,8 @@ describe('IndexAPI 集成测试', () => {
     let bgmAuth!: ReturnType<typeof createBangumiClient>;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -76,8 +76,8 @@ describe('IndexAPI 集成测试', () => {
     let bgmAuth!: ReturnType<typeof createBangumiClient>;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -155,8 +155,8 @@ describe('IndexAPI 集成测试', () => {
     let bgmAuth!: ReturnType<typeof createBangumiClient>;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -194,8 +194,8 @@ describe('IndexAPI 集成测试', () => {
     let bgmAuth!: ReturnType<typeof createBangumiClient>;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -236,8 +236,8 @@ describe('IndexAPI 集成测试', () => {
     let bgmAuth!: ReturnType<typeof createBangumiClient>;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -278,8 +278,8 @@ describe('IndexAPI 集成测试', () => {
     let bgmAuth!: ReturnType<typeof createBangumiClient>;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
@@ -317,8 +317,8 @@ describe('IndexAPI 集成测试', () => {
     let bgmAuth!: ReturnType<typeof createBangumiClient>;
 
     beforeAll(async () => {
-      if (!token) return;
-      bgmAuth = createBangumiClient({ token });
+      if (!hasToken) return;
+      bgmAuth = createBangumiClient({ token: token!.trim() });
     });
 
     it('未登录时返回 401', async () => {
