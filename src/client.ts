@@ -1,5 +1,3 @@
-import { VERSION } from './version.js';
-
 import { SubjectAPI } from './api/01-subjects.js';
 import { EpisodeAPI } from './api/02-episodes.js';
 import { CharacterAPI } from './api/03-characters.js';
@@ -9,6 +7,7 @@ import { CollectionAPI } from './api/06-collections.js';
 import { RevisionAPI } from './api/07-revisions.js';
 import { IndexAPI } from './api/08-indices.js';
 import { createClient } from './generated/client/index.js';
+import { VERSION } from './version.js';
 
 const DEFAULT_BASE_URL = 'https://api.bgm.tv';
 
