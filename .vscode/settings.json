@@ -16,12 +16,12 @@
     "run_in_terminal:git log*",
     "run_in_terminal:git diff*",
     "run_in_terminal:git status*",
-    // git branch 只批准列出操作
+    // git branch 只批准精确列出操作（不加通配符，避免 -v -d 等删除命令被误批）
     "run_in_terminal:git branch",
-    "run_in_terminal:git branch -v*",
-    "run_in_terminal:git branch -a*",
-    "run_in_terminal:git branch -r*",
-    "run_in_terminal:git branch --list*",
+    "run_in_terminal:git branch -v",
+    "run_in_terminal:git branch -a",
+    "run_in_terminal:git branch -r",
+    "run_in_terminal:git branch --list",
     "run_in_terminal:git remote*",
     "run_in_terminal:git show*",
     "run_in_terminal:git stash list*",
