@@ -156,7 +156,8 @@
 3. 加载环境变量（每次新开终端执行一次）：
 
    ```bash
-   export $(grep -E "^(GH_TOKEN|BGM_TOKEN)=" .env | xargs)
+   export GH_TOKEN=$(grep '^GH_TOKEN=' .env | cut -d= -f2-)
+   export BGM_TOKEN=$(grep '^BGM_TOKEN=' .env | cut -d= -f2-)
    ```
 
 4. 验证配置：
