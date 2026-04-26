@@ -196,6 +196,9 @@
     "tinybench",
     "tinyexec",
     "tinyglobby",
-    "vite"
+    "vite",
+    "shlex",
+    "subcmd",
+    "startswith"
   ]
 }

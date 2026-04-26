@@ -76,7 +76,9 @@
     "libc",
     "stackback",
     "tinyexec",
-    "AKIAIOSFODNN"
+    "AKIAIOSFODNN",
+    "shlex",
+    "subcmd"
   ],
 
   "flagWords": [
