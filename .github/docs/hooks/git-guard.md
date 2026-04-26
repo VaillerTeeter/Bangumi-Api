@@ -128,7 +128,7 @@ mcp_github_get_* / mcp_github_list_* / mcp_github_search_*
 echo '{"toolName":"run_in_terminal","toolInput":{"command":"git add ."}}' \
   | bash .github/hooks/scripts/git-guard.sh
 
-echo '{"toolName":"run_in_terminal","toolInput":{"command":"gh pr merge 42 --squash"}}' \
+echo '{"toolName":"run_in_terminal","toolInput":{"command":"gh pr merge 42 --merge"}}' \
   | bash .github/hooks/scripts/git-guard.sh
 
 # 应直接放行（无输出，exit 0）
