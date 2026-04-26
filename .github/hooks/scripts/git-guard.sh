@@ -29,29 +29,48 @@ except Exception:
 # ── 分支 1：run_in_terminal（git / gh CLI）────────────────────────────────────
 if [ "$TOOL_NAME" = "run_in_terminal" ]; then
 
-  # 匹配危险的 git 写操作
-  # 覆盖：add / commit / push / reset / restore / rm / merge / rebase / cherry-pick / branch -d / tag / stash drop|pop
-  if echo "$COMMAND" | grep -qiE '^\s*git\s+(add|commit|push|reset|restore|rm|merge|rebase|cherry-pick)\b'; then
-    REASON="git 写操作 / 历史变更操作"
-  elif echo "$COMMAND" | grep -qiE '^\s*git\s+tag\s+(-[adsfADSF]|[a-zA-Z0-9])'; then
-    REASON="git tag 写操作（创建/删除标签）"
-  elif echo "$COMMAND" | grep -qiE '^\s*git\s+branch\s+(-d|-D|--delete)\b'; then
-    REASON="git 删除分支"
-  elif echo "$COMMAND" | grep -qiE '^\s*git\s+stash\s+(drop|pop|clear)\b'; then
-    REASON="git stash 销毁操作"
-  # 匹配危险的 gh CLI 操作
-  # 覆盖：pr create/merge/close、release create、repo delete、issue close
-  elif echo "$COMMAND" | grep -qiE '^\s*gh\s+pr\s+(create|merge|close|edit)\b'; then
-    REASON="gh PR 操作（create/merge/close/edit）"
-  elif echo "$COMMAND" | grep -qiE '^\s*gh\s+release\s+create\b'; then
-    REASON="gh release create（创建发布版本）"
-  elif echo "$COMMAND" | grep -qiE '^\s*gh\s+repo\s+delete\b'; then
-    REASON="gh repo delete（删除仓库）"
-  elif echo "$COMMAND" | grep -qiE '^\s*gh\s+issue\s+(close|delete)\b'; then
-    REASON="gh issue close/delete"
-  else
-    exit 0
-  fi
+  # 将命令按 shell 操作符（&&、||、;、|、换行）拆分为独立片段，逐段检测
+  # 同时允许片段前带有环境变量赋值（如 GIT_DIR=... git push）
+  REASON=$(COMMAND="$COMMAND" python3 -c "
+import re, os, sys
+
+cmd = os.environ.get('COMMAND', '')
+# 按常见 shell 操作符拆分
+segments = re.split(r'&&|\|\||[;|\n]', cmd)
+
+# 允许片段前有若干 KEY=VALUE 形式的环境变量赋值
+env_pfx = r'(?:[A-Za-z_][A-Za-z0-9_]*=[^\s]*\s+)*'
+
+checks = [
+    (rf'^\s*{env_pfx}git\s+(?:add|commit|push|reset|restore|rm|merge|rebase|cherry-pick)\b',
+     'git 写操作 / 历史变更操作'),
+    (rf'^\s*{env_pfx}git\s+tag\s+(?:-[adsfADSF]|[a-zA-Z0-9])',
+     'git tag 写操作（创建/删除标签）'),
+    (rf'^\s*{env_pfx}git\s+branch\s+(?:-d|-D|--delete)\b',
+     'git 删除分支'),
+    (rf'^\s*{env_pfx}git\s+stash\s+(?:drop|pop|clear)\b',
+     'git stash 销毁操作'),
+    (rf'^\s*{env_pfx}gh\s+pr\s+(?:create|merge|close|edit)\b',
+     'gh PR 操作（create/merge/close/edit）'),
+    (rf'^\s*{env_pfx}gh\s+release\s+create\b',
+     'gh release create（创建发布版本）'),
+    (rf'^\s*{env_pfx}gh\s+repo\s+delete\b',
+     'gh repo delete（删除仓库）'),
+    (rf'^\s*{env_pfx}gh\s+issue\s+(?:close|delete)\b',
+     'gh issue close/delete'),
+]
+
+for seg in segments:
+    seg = seg.strip()
+    if not seg:
+        continue
+    for pattern, reason in checks:
+        if re.search(pattern, seg, re.IGNORECASE):
+            print(reason)
+            sys.exit(0)
+" 2>/dev/null)
+
+  [ -z "$REASON" ] && exit 0
 
 # ── 分支 2：GitHub MCP 写操作 ──────────────────────────────────────────────────
 elif echo "$TOOL_NAME" | grep -qiE '^mcp_github_(create_pull_request|merge_pull_request|push_files|create_or_update_file|create_branch|create_repository|fork_repository|update_pull_request_branch|create_pull_request_review|add_issue_comment|update_issue|create_issue)$'; then
