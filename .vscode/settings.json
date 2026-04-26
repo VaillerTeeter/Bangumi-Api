@@ -81,7 +81,11 @@
     }
   ],
 
-  // cSpell 项目自定义词汇（.lintrc/general/cspell.json 不在根目录，VS Code 扩展无法自动发现）
+  // cSpell 项目自定义词汇
+  // 注意：未使用 cSpell.configFile 指向 .lintrc/general/cspell.json，因为
+  //   1. 该配置项在 VS Code 扩展中不可靠，可能与扩展内部的配置发现逻辑冲突
+  //   2. CI 已通过 --config .lintrc/general/cspell.json 显式传参，两者相互独立
+  //   3. 避免在根目录创建额外的 cspell.json（保持目录整洁）
   "cSpell.ignorePaths": [
     ".lintrc/general/cspell.json",
   ],
