@@ -57,21 +57,31 @@ if [ "$TOOL_NAME" = "run_in_terminal" ]; then
 import os, re, shlex, sys
 
 cmd = os.environ.get('COMMAND', '')
-# 按常见 shell 操作符拆分；优先匹配多字符操作符（&&、||），再匹配单字符（;、|、&、换行）
-# 包含单个 & 以阻断 sleep 1 & git push 等后台执行绕过
-segments = re.split(r'&&|\|\||[;|&\n]', cmd)
 
 env_assign_re = re.compile(r'^[A-Za-z_][A-Za-z0-9_]*=.*$')
 
-def tokenize_segment(seg):
+def split_shell_segments(command):
+    # 使用 shlex 感知引号地按 shell 操作符（&&、||、;、|、&、换行）拆分命令
+    # 引号内的操作符不触发拆分，避免对引号包裹的 -c 参数误拆
     try:
-        return shlex.split(seg, posix=True)
+        lexer = shlex.shlex(command, posix=True, punctuation_chars=';|&\n')
+        lexer.whitespace_split = True
+        raw_tokens = list(lexer)
     except ValueError:
-        # 引号不匹配或解析失败时无法安全分词；保守地触发拦截而非降级到 seg.split()
-        # seg.split() 会忽略引号结构，可能导致 bash -c 'git push && echo ok' 中的
-        # git push 被识别错误，从而绕过检测
         print('命令含不匹配引号或无法安全解析，保守拦截')
         sys.exit(0)
+    operator_tokens = {'&&', '||', ';', '|', '&', '\n'}
+    segs, current = [], []
+    for tok in raw_tokens:
+        if tok in operator_tokens:
+            if current:
+                segs.append(current)
+                current = []
+        else:
+            current.append(tok)
+    if current:
+        segs.append(current)
+    return segs
 
 def strip_env_assignments(tokens):
     idx = 0
@@ -107,12 +117,8 @@ def strip_wrappers(tokens):
                 if is_c_flag and i + 1 < len(tokens):
                     # 递归分析 -c 后的命令字符串
                     inner_cmd = tokens[i + 1]
-                    inner_segs = re.split(r'&&|\|\||[;|&\n]', inner_cmd)
-                    for iseg in inner_segs:
-                        iseg = iseg.strip()
-                        if not iseg:
-                            continue
-                        itokens = strip_env_assignments(tokenize_segment(iseg))
+                    for iseg_tokens in split_shell_segments(inner_cmd):
+                        itokens = strip_env_assignments(iseg_tokens)
                         yield from strip_wrappers(itokens)
                     return
                 if not tokens[i].startswith('-'):
@@ -220,11 +226,19 @@ def inspect_tokens(tokens):
         if subcmd in {'add', 'commit', 'push', 'reset', 'restore', 'rm', 'merge', 'rebase', 'cherry-pick'}:
             print('git 写操作 / 历史变更操作')
             sys.exit(0)
-        if subcmd == 'tag' and len(rest) > 1:
-            # 只拦截写操作：-a/-d/-f/-s/-m 等标志，或直接是非只读标志的 tag 名
-            tag_readonly_flags = {'-l', '--list', '-v', '--sort', '--format', '--contains', '--merged', '--no-merged', '--points-at', '--column', '--no-column'}
-            tag_next = rest[1].lower()
-            if tag_next not in tag_readonly_flags and not tag_next.startswith('--sort=') and not tag_next.startswith('--format=') and not tag_next.startswith('--contains='):
+        if subcmd == 'tag':
+            # 扫描所有参数：含写标志则拦截；无任何 - 标志但有位置参数则为隐式创建，也拦截
+            tag_write_flags = {'-a', '--annotate', '-d', '--delete', '-f', '--force',
+                               '-s', '--sign', '-m', '--message', '-u', '--local-user',
+                               '-F', '--file'}
+            tag_args_lower = [a.lower() for a in rest[1:]]
+            if any(a in tag_write_flags for a in tag_args_lower):
+                print('git tag 写操作（创建/删除标签）')
+                sys.exit(0)
+            # git tag <name> 或 git tag <name> <commit>（无任何 - 标志）→ 隐式创建
+            has_any_flag = any(a.startswith('-') for a in tag_args_lower)
+            has_positional = any(not a.startswith('-') for a in tag_args_lower)
+            if not has_any_flag and has_positional:
                 print('git tag 写操作（创建/删除标签）')
                 sys.exit(0)
         if subcmd == 'branch':
@@ -253,11 +267,8 @@ def inspect_tokens(tokens):
             print('gh issue close/delete')
             sys.exit(0)
 
-for seg in segments:
-    seg = seg.strip()
-    if not seg:
-        continue
-    tokens = strip_env_assignments(tokenize_segment(seg))
+for seg_tokens in split_shell_segments(cmd):
+    tokens = strip_env_assignments(seg_tokens)
     # strip_wrappers 是生成器，每次 yield 一组有效 token；shell -c 场景下递归展开内层命令
     for toks in strip_wrappers(tokens):
         inspect_tokens(toks)
