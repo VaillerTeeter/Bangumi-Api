@@ -8,7 +8,13 @@ set -euo pipefail
 # python3 是本脚本的硬性依赖；缺失时 fall-back 到保守 ask 而非静默失效
 emit_conservative_ask() {
   local reason="${1:-python3 is required by git-guard.sh but is unavailable or invalid}"
-  printf '%s\n' "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"$reason\"}}"
+  local escaped_reason="$reason"
+  escaped_reason=${escaped_reason//\\/\\\\}
+  escaped_reason=${escaped_reason//\"/\\\"}
+  escaped_reason=${escaped_reason//$'\n'/\\n}
+  escaped_reason=${escaped_reason//$'\r'/\\r}
+  escaped_reason=${escaped_reason//$'\t'/\\t}
+  printf '%s\n' "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"ask\",\"permissionDecisionReason\":\"$escaped_reason\"}}"
   exit 0
 }
 
