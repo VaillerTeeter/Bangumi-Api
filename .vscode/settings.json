@@ -3,14 +3,10 @@
   // chat.tools.autoApprove 留空 = 所有工具操作均需手动确认（默认行为）
   "chat.tools.autoApprove": [
     // 终端只读命令 — 文件与目录
-    "run_in_terminal:cd*",
+    "run_in_terminal:cd",
     "run_in_terminal:ls*",
-    "run_in_terminal:cat*",
     "run_in_terminal:which*",
     "run_in_terminal:pwd*",
-    "run_in_terminal:echo*",
-    "run_in_terminal:find*",
-    "run_in_terminal:grep*",
     "run_in_terminal:head*",
     "run_in_terminal:tail*",
     "run_in_terminal:wc*",
