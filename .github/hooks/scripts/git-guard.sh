@@ -65,6 +65,7 @@ def split_shell_segments(command):
     # 引号内的操作符不触发拆分，避免对引号包裹的 -c 参数误拆
     try:
         lexer = shlex.shlex(command, posix=True, punctuation_chars=';|&\n')
+        lexer.whitespace = ' \t\r'  # 从空白集合中移除 \n，使其作为操作符 token 被正确发射
         lexer.whitespace_split = True
         raw_tokens = list(lexer)
     except ValueError:
