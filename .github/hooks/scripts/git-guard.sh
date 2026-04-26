@@ -73,7 +73,7 @@ for seg in segments:
   [ -z "$REASON" ] && exit 0
 
 # ── 分支 2：GitHub MCP 写操作 ──────────────────────────────────────────────────
-elif echo "$TOOL_NAME" | grep -qiE '^mcp_github_(create_pull_request|merge_pull_request|push_files|create_or_update_file|create_branch|create_repository|fork_repository|update_pull_request_branch|create_pull_request_review|add_issue_comment|update_issue|create_issue)$'; then
+elif printf '%s' "$TOOL_NAME" | grep -qiE '^mcp_github_(create_pull_request|merge_pull_request|push_files|create_or_update_file|create_branch|create_repository|fork_repository|update_pull_request_branch|create_pull_request_review|add_issue_comment|update_issue|create_issue)$'; then
 
   # 提取关键参数作为摘要展示
   COMMAND=$(printf '%s' "$INPUT" | python3 -c "
