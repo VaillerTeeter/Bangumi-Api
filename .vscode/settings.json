@@ -75,5 +75,130 @@
   // 防止 cSpell 对 cspell.json 文件本身做拼写检查
   "cSpell.ignorePaths": [
     ".lintrc/general/cspell.json",
-  ]
+  ],
+
+  // Trailing Spaces — 保存时自动删除行尾多余空格
+  "trailing-spaces.trimOnSave": true,
+  // 当前正在编辑的行不高亮行尾空格（避免打字时闪烁干扰）
+  "trailing-spaces.highlightCurrentLine": false,
+
+  // GitLens — 关闭函数/类上方的 CodeLens（"3 commits · 2 authors" 样式），减少视觉噪音
+  // 内联 blame（行末 "John · 2 days ago"）默认保留
+  "gitlens.codeLens.enabled": true,
+
+  // CodeSnap — 截图样式
+  "codesnap.showWindowTitle": true,       // 截图顶部显示文件名
+  "codesnap.showWindowControls": true,    // 显示红绿灯按钮（macOS 风格）
+  "codesnap.roundedCorners": true,        // 圆角容器
+  "codesnap.backgroundColor": "#1e1e2e",  // 截图背景色（深色，可自行改颜色）
+  "codesnap.boxShadow": "0 20px 60px rgba(0,0,0,0.5)", // 阴影
+
+  // Image Preview — 行号侧边栏图片预览高度（默认 100，适当调大）
+  "gutterpreview.imagePreviewMaxHeight": 200,
+
+  // Path Intellisense — import 补全时自动附加文件扩展名（.ts / .json 等）
+  "path-intellisense.extensionOnImport": true,
+
+  // ── 内置功能（无需插件）────────────────────────────────────
+  // 括号对彩虹色（VS Code 1.67+ 内置）
+  "editor.bracketPairColorization.enabled": true,
+  // 高亮当前光标所在括号对的连接线
+  "editor.guides.bracketPairs": "active",
+  // 粘性滚动 — 当前所在函数/类名固定在编辑器顶部
+  "editor.stickyScroll.enabled": true,
+
+  // ── Markdown ──────────────────────────────────────────────
+  // Markdown All in One — 保存时自动更新目录（TOC）
+  "markdown.extension.toc.updateOnSave": true,
+  // TOC 使用无序列表（- ），与 GitHub 渲染一致
+  "markdown.extension.toc.orderedList": false,
+  // 斜体使用 * 而不是 _（与 GFM 推荐一致）
+  "markdown.extension.italic.indicator": "*",
+
+  // markdownlint — 规则微调
+  "markdownlint.config": {
+    // MD013: 行长度限制 — 关闭（文档行长通常不做硬性限制）
+    "MD013": false,
+    // MD033: 禁止内联 HTML — 关闭（README 里常用 <br> <details> 等）
+    "MD033": false,
+    // MD041: 文件首行必须是 h1 — 关闭（CONTRIBUTING / SECURITY 等文件首行不一定是标题）
+    "MD041": false
+  },
+
+  // Markdown 文件豁免行尾空格裁剪（两个空格 = <br> 换行，不能删）
+  "[markdown]": {
+    "trailing-spaces.trimOnSave": false
+  },
+
+  // ── TypeScript / JavaScript (ESLint + Prettier) ───────────
+  // 配置文件在非标准路径，必须显式指定，否则插件找不到
+
+  // Prettier — 指向非标准路径的配置文件
+  "prettier.configPath": ".lintrc/frontend/prettier/.prettierrc",
+  // TS/JS 文件默认格式化器设为 Prettier
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // ESLint — 指向非标准路径的配置文件（eslint@8 旧版 eslintrc 格式）
+  "eslint.options": {
+    "overrideConfigFile": ".lintrc/frontend/typescript/.eslintrc-ts.json"
+  },
+  // 仅对 TS/JS 文件启用 ESLint（避免对其他语言误报）
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
+  // 保存时自动修复 ESLint 可自动修复的问题
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // 移动/重命名文件时自动更新所有 import 路径（TS 内置功能）
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+
+  // ── Shell / Bash (ShellCheck + shell-format) ──────────────
+  // Remote SSH 连接 Ubuntu 后，插件自动使用远程的 shellcheck / shfmt 工具
+  // ShellCheck — 默认检查所有 shell 文件，无需额外配置路径
+  // 指定目标 shell 方言：bash（按需改为 sh / ksh / dash）
+  "shellcheck.customArgs": ["--shell=bash"],
+  // 排除不需要的规则（按需添加）：
+  // SC1091 = 忽略 source 文件找不到的警告（常见于 CI 脚本）
+  "shellcheck.exclude": ["SC1091"],
+
+  // shell-format — sh / bash / zsh 文件保存时自动格式化
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.formatOnSave": true
+  },
+  // shfmt 格式化参数：-i 2 = 2空格缩进，-ci = switch case 缩进，-bn = 二元运算符换行
+  "shellformat.flag": "-i 2 -ci -bn",
+
+  // ── YAML (redhat.vscode-yaml) ─────────────────────────────
+  // Schema 关联：对 GitHub Actions / Dependabot 文件提供智能补全和验证
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml",
+    "https://json.schemastore.org/dependabot-2.0.json": ".github/dependabot.yml"
+  },
+  // 禁用插件内置格式化（改用 Prettier，避免两者冲突）
+  "yaml.format.enable": false,
+  // YAML 文件格式化器设为 Prettier（.prettierrc 已有 YAML 专项配置：2空格、singleQuote: false）
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // ── TOML (tamasfe.even-better-toml) ──────────────────────
+  // 项目中有 .lintrc/security/.gitleaks.toml
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
+    "editor.formatOnSave": true
+  },
+  // 表格（[section]）内部缩进对齐，可读性更好
+  "evenBetterToml.formatter.indentTables": true
 }

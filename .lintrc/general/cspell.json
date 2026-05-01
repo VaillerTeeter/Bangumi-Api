@@ -84,7 +84,17 @@
     "toks",
     "chdir",
     "procs",
-    "excepthook"
+    "excepthook",
+    "codesnap",
+    "gutterpreview",
+    "Jdks",
+    "pytest",
+    "rustup",
+    "clippy",
+    "esbenp",
+    "foxundermoon",
+    "shellformat",
+    "tamasfe"
   ],
 
   "flagWords": [
