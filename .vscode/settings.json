@@ -82,7 +82,7 @@
   // 当前正在编辑的行不高亮行尾空格（避免打字时闪烁干扰）
   "trailing-spaces.highlightCurrentLine": false,
 
-  // GitLens — 关闭函数/类上方的 CodeLens（"3 commits · 2 authors" 样式），减少视觉噪音
+  // GitLens — 保留函数/类上方的 CodeLens（"3 commits · 2 authors" 样式）
   // 内联 blame（行末 "John · 2 days ago"）默认保留
   "gitlens.codeLens.enabled": true,
 
@@ -159,7 +159,7 @@
     "source.fixAll.eslint": "explicit"
   },
 
-  // 移动/重命名文件时自动更新所有 import 路径（TS 内置功能）
+  // 移动/重命名文件时自动更新所有 import 路径（VS Code 内置功能）
   "js/ts.updateImportsOnFileMove.enabled": "always",
 
   // ── Shell / Bash (ShellCheck + shell-format) ──────────────
