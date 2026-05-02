@@ -1,5 +1,5 @@
 ---
-# yamllint 配置 — 针对 bangumi-api-client 项目
+# yamllint 配置 — 针对 Bangumi-api-client 项目
 # 文档：https://yamllint.readthedocs.io/en/stable/configuration.html
 
 extends: default

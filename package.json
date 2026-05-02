@@ -1,5 +1,5 @@
 {
-  "name": "bangumi-api-client",
+  "name": "Bangumi-api-client",
   "version": "2026.2.22",
   "type": "module",
   "main": "./dist/index.js",
@@ -13,7 +13,7 @@
   "files": [
     "dist"
   ],
-  "repository": "git@github.com:VaillerTeeter/bangumi-api-client.git",
+  "repository": "git@github.com:VaillerTeeter/Bangumi-api-client.git",
   "author": "Vaciller <wyc_19533480830@outlook.com>",
   "license": "GPL-3.0-only",
   "engines": {

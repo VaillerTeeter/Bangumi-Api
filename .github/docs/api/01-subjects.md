@@ -9,7 +9,7 @@
 ## 快速上手
 
 ```ts
-import { createBangumiClient } from 'bangumi-api-client';
+import { createBangumiClient } from 'Bangumi-api-client';
 
 const bgm = createBangumiClient();
 
