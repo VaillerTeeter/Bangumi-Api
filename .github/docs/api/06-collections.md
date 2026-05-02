@@ -9,7 +9,7 @@
 ## 快速上手
 
 ```ts
-import { createBangumiClient } from 'Bangumi-api-client';
+import { createBangumiClient } from 'bangumi-api-client';
 
 // 无需认证的接口（查询他人公开收藏）
 const bgm = createBangumiClient();

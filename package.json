@@ -1,5 +1,5 @@
 {
-  "name": "Bangumi-api-client",
+  "name": "bangumi-api-client",
   "version": "2026.2.22",
   "type": "module",
   "main": "./dist/index.js",
