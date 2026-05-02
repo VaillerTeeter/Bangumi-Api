@@ -11,7 +11,7 @@ import { VERSION } from './version.js';
 
 const DEFAULT_BASE_URL = 'https://api.bgm.tv';
 
-const DEFAULT_USER_AGENT = `bangumi-api-client/${VERSION} (https://github.com/VaillerTeeter/bangumi-api-client)`;
+const DEFAULT_USER_AGENT = `Bangumi-api-client/${VERSION} (https://github.com/VaillerTeeter/Bangumi-api-client)`;
 
 export interface BangumiClientOptions {
   token?: string;

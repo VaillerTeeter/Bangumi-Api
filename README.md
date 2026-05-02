@@ -1,4 +1,4 @@
-# bangumi-api-client
+# Bangumi-api-client
 
 基于 [Bangumi API v0](https://github.com/bangumi/api) 的 TypeScript 封装库，提供类型安全的高层调用接口。覆盖全部 56 个接口，包含条目、章节、角色、人物、用户、收藏、编辑历史和目录八大资源模块。
 
@@ -249,7 +249,7 @@ npm publish
 
 ### 本项目
 
-- [bangumi-api-client](https://github.com/VaillerTeeter/bangumi-api-client) — 本仓库
+- [Bangumi-api-client](https://github.com/VaillerTeeter/Bangumi-api-client) — 本仓库
 - [模板仓库 Example-of-Github-Repo](https://github.com/VaillerTeeter/Example-of-Github-Repo) — CI 配置、lint 规则、Issue/PR 模板、行为准则等通用配置均继承自此仓库
 
 ### Bangumi
